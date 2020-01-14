@@ -1,0 +1,145 @@
+%---------------------------------------------------------------------
+%
+%                          Capítulo 2 - Herramientas tecnológicas
+%
+%---------------------------------------------------------------------
+
+\chapter{Herramientas tecnológicas}
+
+\begin{quotation}\noindent\begin{small}\textbf{\spacedallcaps{RESUMEN}} \\
+En esta sección, se va a explicar las distintas opciones tecnológicas que se han barajado a la hora de realizar este trabajo hasta llegar a la solución final. Las decisiones clave han sido la elección de protocolos de comunicación de los datos, el tipo de base de datos para persistir los registros generados durante las interacciones entre dispositivos y la elección de la pulsera inteligente para realizar estas mediciones. Otras elecciones que han sido más fáciles de resolver, como por ejemplo, las distintas opciones de protocolos de ciberseguridad que podrían haberse implementado también serán detalladas en esta sección.
+\end{small}\end{quotation}
+
+
+
+%-------------------------------------------------------------------
+\section{Bases de datos}
+\paragraph{}
+Las bases de datos son conjuntos de información almacenadas con un determinado orden para facilitar su manipulación. Los dos tipos principales de bases de datos son:
+
+\begin{itemize}
+
+\item Bases de datos relacionales: son aquellas que siguen el modelo de la lógica de predicados y se utilizan generalmente para almacenar lo que se denominan datos \textit{clásicos}. Es decir, se suelen usar cuando se espera que el resultado de una consulta sea una tupla de valores con la forma exacta con la que se han solicitado, eliminando así la incertidumbre respecto a la definición de las columnas de los elementos que se encuentran en la base de datos \citep{jimenez2016implementacion}. Estas bases de datos a su vez deben de tener definidas al menos las reglas de inserción, actualización y eliminación de datos \citep{codd1979extending}. La principal desventaja de las bases de datos relacionales es su baja escalabilidad debido a que fueron diseñadas para alojar los datos en un único servidor con el fin de garantizar la integridad del mapeado de las tablas así como evitar los problemas de la computación distribuida, como podría ser en este caso la modificación de un dato replicado en varios servidores. A esto se le añade la dificultad para lidiar con datos que no tengan una estructura previamente conocida y/o fuertemente tipificada. Por otro lado, existe una gran comunidad de desarrolladores utilizando bases de datos relacionales como SQL lo que facilita su implementación. Estas bases de datos pueden ser muy útiles, por ejemplo, para almacenar los datos de registro de usuarios en una página web en la que existen una serie de campos estándar que se pretenden mantener sin grandes modificaciones a lo largo del tiempo.
+
+\item Bases de datos no relacionales: se basan en una mayor flexibilidad a la hora de almacenar datos con atributos y contenido dispar, pudiendo añadir nuevos atributos sin tener que modificar el contenido de otros registros. Estas bases de datos suelen facilitar la escalabilidad horizontal así como la posibilidad de replicar y distribuir los datos entre los distintos servidores, al poderse particionar los datos por patrones. Un ejemplo de caso de uso de este tipo de bases de datos es el almacenamiento de sensorizaciones de una instalación en la que pueda haber un número indeterminado de tipos de datos que puedan llegar en cada momento, así como que estos, dependiendo de la marca de los dispositivos instalados, puedan estar etiquetados de distinta manera. Entre las bases de datos no relaciones o no-sql podemos encontrar los siguientes tipos \citep{aws-nosql}:
+\begin{itemize}
+\item Clave-valor: son altamente divisibles y permiten un gran escalado horizontal. Algunos de sus casos de uso son los videojuegos, la tecnología publicitaria o IOT. Algunos ejemplos de estas bases de datos son Redis y Cassandra.
+\item Documento: es un modelo que no se basa en filas y columnas desnormalizadas, sino que los datos se presentan en formatos como JSON. Algunos ejemplos de estas bases de datos son MongoDB y CouchDB.
+\item Gráficas: son principalmente usadas en aplicaciones que trabajan con conjuntos de datos fuertemente conectados, como es el caso de los datos relacionados con las redes sociales, motores de recomendaciones y gráficos de conocimiento. Entre este tipo de base de datos se encuentran Neo4j y OrientDB.
+\end{itemize}
+
+\paragraph{}
+En el caso de las bases de datos no relaciones, la diferencia entre las distintas soluciones tecnológicas es bastante significativa. Algunos de los factores a tener en cuenta a la hora de decantarse por algunas de estas tecnologías son:
+
+\begin{enumerate}
+\item La bases de datos pueden tener licencias tanto privativas como de software libre. Si se elige una solución de software libre no habrá limitaciones en el conocimiento que se puede tener sobre la tecnología en cuestión.
+\item La interacción con la base de datos. Esta facilidad es subjetiva y no es el propósito de este trabajo buscar métodos que estandaricen dicha medición entre distintos perfiles de programadores. Por tanto, este punto debe ser considerado en función del equipo que vaya a trabajar con la base de datos elegida.
+\item Fácil interacción en el medio tecnológico en el que se vaya a interactuar con la base de datos (un ordenador, un Arduino, un móvil, etc).
+\item Debe poseer una comunidad de desarrolladores que facilite la resolución de dudas. Esto puede verse reflejado principalmente en los índices de popularidad de los lenguajes en foros de programación como Stackoverflow.
+\item Debe disponer de una versión estable.
+\item Persistencia de la base de datos. Si se quieren guardar los datos históricos de una aplicación, será necesario que esta base de datos sea persistente.
+\end{enumerate}
+
+\paragraph{}
+Teniendo como referencia la facilidad del programador de este proyecto con las distintas bases de datos (punto 2), las opciones que se barajan son Cassandra, MongoDB y Couchbase. Estas soluciones teconológicos son todas ellas de software libre (punto 1), con una fácil interaccion en Python y Java (punto 3), que son los dos lenguajes de programación que se barajan en este proyecto y todos ellos llevan por lo menos siete años siendo públicos, por lo que se considera que cumplen también el punto 5.
+
+\paragraph{}
+En el caso de Cassandra, a pesar de encontrarse entre las quince bases de datos más utilizadas según la encuesta de Stackoverflow de 2018 \citep{so-db}, ni siquiera en la propia documentación de las páginas oficiales de estos lenguajes se explica cómo interactuar con Android. Por otro lado, Couchbase y MongoDB  cuentan con documentación para Android en sus respectivas páginas oficiales así como proyectos de ejemplo en los que queda bastante claro la manera de interactuar con las bases de datos. En el caso de Couchbase, esta cuenta con un sistema de consultas de datos llamado N1QL que intenta servir como puente entre el formato de consultas con sintaxis más farragosas como las de Mongo y las sentencias de bases de dato SQL.
+
+\paragraph{}
+Por último, tanto MongoDB como Couchbase cuentan con contenedores Docker ya configurados así como tutoriales que facilitan su puesta en marcha y modificación. Ambas cuentan con una comunidad activa de de desarrolladores, pero MongoDB actualmente (2019) es una tecnología bastante más popular que Couchbase.
+\end{itemize}
+
+\paragraph{}
+Finalmente, se ha decidido usar MongoDB ya que es una base de datos con una sintaxis sencilla, con librería específica en Python, es ideal para soluciones distribuidas y es una base de datos no relacional, lo que facilitará el almacenamiento de datos con estructuras variables.
+
+\section{Protocolos de comunicación}
+\paragraph{}
+Los datos sensorizados por la pulsera electrónica deben de ser enviados periódicamente al servidor para poder ser posteriormente analizados por la terapeuta. Estos datos son alfanuméricos y no es necesario disponer de ellos en el servidor tan pronto como sean generados. Por contra, es importante que la aplicación no requiera de un elevado coste de uso de red, pues se espera que la aplicación no sea intensiva en el uso de recursos para que por un lado pueda ser usado en una mayor gama de celulares y por otro no suponga una molestia al usuario que termine con la desactivación de la aplicación.
+
+\paragraph{}
+Los protocolos de comunicación que se van a analizar van a depender en cada caso de las características de los dispostivos que se comunican así como de la ciberseguridad necesaria para entablar dicha comunicación. A continuación se van a detallar los tipos de comunicaciones que son necesarias en el proyecto con las distintas implementaciones posibles.
+
+\subsection{Comunicación entre el móvil Android y la pulsera}
+\paragraph{}
+La característica más importante que debe tener el protocolo utilizado es que debe ser de muy bajo consumo para maximizar la duración de la batería de la pulsera inteligente. A su vez, esta comunicación está limitada por los protocolos válidos entre los distintos modelos de móviles y de pulseras. Por este motivo, la única opción viable actualmente (2019) es utilizar el protocolo BLE, puesto que es compatible con la gran mayoría de dispositivos móviles inteligente así como de las pulseras inteligentes, lo que hace que la solución no quede anclada a ningún elemento físico. Este protocolo, como su propio nombre indica, es un protocolo de bajo consumo lo que reducirá el consumo eléctrico respecto a otros protocolos como Bluetooth 2.0.
+
+\subsection{Comunicación entre el dispositivo móvil Android y el servidor}
+\paragraph{}
+Una vez han llegado los datos de las sensorizaciones al móvil, estos datos se envían al servidor. Para realizar este envío, se puede realizar mediante peticiones Hypertext Transfer Protocol(HTTP), Message Queuing Telemetry Transport (MQTT) o Advanced Message Queuing Protocol (AMQP).
+
+\paragraph{}
+La principal diferencia entre las peticiones HTTP y las peticiones MQTT Y AMQP es el consumo de recursos de estas soluciones, siendo MQTT un protocolo más eficiente en el envío de paquetes que HTTP \citep{yokotani2016comparison}, que es un elemento crítico en IOT, puesto que los dispositivos IOT no suelen estar conectados a la corriente continua, lo que hace que el consumo de energía de los dispositivos IOT sea un factor crucial a la hora de tomar decisiones tecnológicas. Por este motivo, el protocolo HTTP queda descartado.
+
+\paragraph{}
+El protocolo MQTT es un protocolo unidireccional entre un publicador y un suscriptor a través de unos identificadores del canal llamado tópicos. En lo que respecta a asegurar que los datos del publicador han llegado al suscriptor, existen tres niveles de Quality of Service (QoS) que se pueden definir por cada tópico. En el nivel cero, se envía el dato al menos una vez pero no se garantiza que ese dato ha llegado al suscriptor. En el nivel uno, el suscriptor debe enviar la confirmación de que le ha llegado el dato en cuestión al menos una vez. Por último, en el nivel dos, se garantiza que el dato llega exactamente una vez al suscriptor.
+
+\paragraph{}
+AMQP se diferencia principalmente de MQTT en que en AMQP el servidor puede mandar mensajes de vuelta al cliente que vayan más allá de los mensajes numéricos de posibles errores. Esto tiene como coste un mayor consumo de ancho de banda, pero mucho menor que en el caso de HTTP. En el caso de MQTT si se quiere establecer esta comunicación bidireccional es necesario crear dos canales entre ambos elementos.
+
+\paragraph{}
+En lo que respecta a la autenticación y la ciberseguridad, ambos protocolos pueden ser integrados con TLS. El ancho de banda de esta solución en MQTT únicamente se ve notablemente resentida en la etapa de autenticación, mientras que en las fases posteriores de envío de datos el rendimiento es muy similar a las soluciones sin TLS \citep{hivemq}.
+
+\paragraph{}
+Finalmente, se ha decidido usar el protocolo AMQP ya que en su implementación de RabbitMQ permite una fácil integración en múltiples lenguajes y añadíendole el protocolo de seguridad TLS, es un protocolo de baja latencia (lo que reduce el consumo de recursos de la app) y permite la comunicación bidireccional entre el servidor y el cliente, facilitando el intercambio de datos entre ambos.
+
+\section{Ciberseguridad}
+\paragraph{}
+Como se va a tratar con datos biométricos sensibles, es importante asegurarse de que esta información no acabe en manos indeseadas. Con este fin, es importante tomar las siguientes medidas de seguridad:
+\begin{enumerate}
+\item Autenticación tanto en la base de datos del móvil como en la base de datos del servidor. En el caso de la base de datos del servidor, no se debe permitir las conexiones externas que trabajen directamente con la base de datos.
+\item Encriptación de los datos de ambas bases de datos, para que aunque un atacante consiguiese tener acceso al dispositivo, no pudiese obtener información de la propia base de datos.
+\item Encriptación punto a punto, para evitar ataques de \textit{sniffing}.
+\end{enumerate}
+
+\paragraph{}
+El punto más vulnerable de nuestra solución será el envío de datos de la pulsera al dispositivo Android, pues este envío viene configurado por el propio desarrollador de la pulsera y se realiza sin ningún tipo de cifrado, por lo que si un atacante se hace con el control del dispositivo Android, podrá leer directamente los datos que son enviados por BLE sin tener que forzar ni nuestra app ni nuestras bases de datos.
+
+
+\subsection{Autenticación y autorización en el servidor web}
+\paragraph{}
+El servidor web debería requerir que los usuarios se autentiquen antes de poder operar con los datos de las mediciones para evitar accesos indeseados a la base de datos con los registros de sensorizaciones. A continuación se van a describir distintos métodos de autenticación que se pueden implementar.
+
+\begin{itemize}
+\item Autenticación básica: el usuario se identifica mediante una tupla usuario-contraseña que son enviados en texto plano. Esto tiene numerosas vulnerabilidades, como la escucha de terceros así como el hecho de que al no contar con claves API que funcionen por debajo de la contraseña del usuario, se impide que el responsable de la seguridad del servidor pueda cambiar las claves API en caso de detectar alguna posible vulnerabilidad. Por contra, en este caso por cada cambio que se realice se requiere la interacción del usuario.
+
+\item OAuth 1.0: es un protocolo basado en la autorización en lugar de la autenticación en la que los consumidores y los proveedores no intercambian las claves de acceso sino claves que autorizan al consumidor para realizar determinadas operaciones. Es un modelo similar al de las claves de coches de lujo de tipo valet, que permiten acceder sólo a recursos concretos del coche (por ejemplo, con estas llaves se puede conducir el coche pero no utilizar el ordenador de abordo) y sólo durante un periodo de uso concreto (por ejemplo, la llave deja de funcionar si se sobrepasan los 10 kilómetros de autonomía que se establecen para que un chófer pueda aparcar dicho coche pero no pueda utilizarlo para dar una vuelta), en contraposición de la llave del coche tradicional que autoriza para realizar cualquier operación sin que esta llave nunca caduque \citep{oauth1}. Los tres actores que intervienen en este protocolo son el usuario, el consumidor y el proveedor del servicio. A continuación se van a desgranar a partir del artículo de Rob Sobers (\citeyear{robsobers}) el flujo que sigue un usuario cuando accede correctamente a un recurso protegido:
+\begin{enumerate}
+\item El usuario muestra su intención de acceder a un determinado recurso.
+\item El consumidor pregunta al proveedor del servicio si puede darle permiso al usuario. El proveedor de servicio provee al consumidor un token y un secreto para acceder al recurso.
+\item El consumidor le envía al usuario este token y su correspondiente secreto. 
+\item El usuario le envía al proveedor del servicio una solicitud para que autorice el token que le ha enviado el consumidor, respondiendo si dicho token es correcto.
+\item El consumidor cambia con el proveedor del servicio el token de solicitud obtenido en el paso 2 por un token de acceso.
+\item El consumidor accede al recurso protegido con su token.
+\end{enumerate}
+%TODO: add flow diagram and explain previous steps referencing the flow diagram (perhaps mix it with Twitter's example from Rob Sobers).
+%https://oauth.net/core/1.0/ Flow diagram OAuth1
+%https://tools.ietf.org/html/rfc6749 Flow diagram OAuth2
+%https://docs.spring.io/spring-social/docs/1.1.0.RELEASE/reference/htmlsingle/#section_oauth2ServiceProviders Flow diagram of both OAuth1 and OAuth2. <--- Use this
+%https://hueniverse.com/oauth-2-0-and-the-road-to-hell-8eec45921529 Limitations OAuth2
+
+\item OAuth 2.0: como su nombre indica, es la segunda versión del protocolo Oauth 1.0, que aumenta significativamente su usabilidad. Las principales diferencias de OAuth 2.0 frente a OAuth 1.0 son las siguientes \citep{oauth2}:
+\begin{itemize}
+\item Mejor experiencia de usuario para accesos desde dispositivos móviles: para usar OAuth 1.0 en las apps, era necesario redirigir al usuario al navegador, que este introdujese ahí sus credenciales, en caso de que fueran correctos copiar el token de autorización e introducirlo de vuelta en la app. En OAuth 2.0 este proceso se puede realizar sin tener que salir de la propia app.
+\item Simplificación de las firmas: ya no hace falta una codificación con-\\ creta y utiliza un único secreto en lugar de dos.
+\item Se incluye la posibilidad de incluir tokens de actualización. Estos son tokens que se envían junto a los credenciales del usuario cuando el token de acceso ha caducado para solicitar un nuevo token. Este token por tanto, no tiene ninguna utilidad si no se tienen a su vez los credenciales de acceso.
+\item Separación clara de roles entre el servidor que responde a las solicitudes de OAuth y los servidores encargados de la autenticación del usuario.
+\end{itemize}
+
+\item JWT (Json Web Token authentification): es un método que utiliza un objeto JSON para autentificar usuarios o enviar información de forma segura. La información que se manda puede ser firmada con HMAC-SHA256, o con RSA o ECDSA \citep{jwt}. El objeto JSON que se envía tiene la siguiente estructura \citep{rfc7519}:
+\begin{itemize}
+    \item Cabecera: es donde se define el algoritmo utilizado para realizar la firma (HMAC, RSA o ECDSA).
+    \item Carga útil o \textit{payload}: es donde se realiza la petición que debe ser contrastada. Existen tres tipos de peticiones:
+    \begin{itemize}
+        \item Peticiones registradas: son una serie de peticiones predefinidas que se recomienda usar. Entre ellas, se encuentra \texttt{iss}, que identifica al emisor del JSON o \texttt{exp}, que establece el momento en el que el JSON deja de ser válido.
+        \item Peticiones públicas: es una lista de peticiones más extensa que las registradas en las que por ejemplo se puede definir el correo electrónico, la zona horaria o la localización del emisor, tal como se puede consultar en la página web de IANA \citeyear{iana}.
+        \item Peticiones privadas: son peticiones personalizadas que el productor y consumidor del objeto JWT previamente han decidido usar.
+    \end{itemize}
+    \item Firma: se incluye la firma de la cabecera y de la carga útil.
+\end{itemize}
+
+\item TLS (Transport Layer Security)/SSL(Secure Socket Layer): son dos protocolos de critografía asimétrica que se suelen utilizar indistintamente y que se usan para establecer comunicaciones seguras en la red. TLS contiene dos capas: la capa para el apretón de manos, en la que autentifica a ambas partes, y la capa en la que se provee seguridad en cuanto a la integridad del mensaje \citep{evaldsson2015evaluate}. Una de sus principales fortalezas es la interoperabilidad: no se impone un método de encriptación entre el cliente y el servidor, sino que se negocia dicho método entre ambos, lo que permite renovar viejos protocolos de encriptación cuando estos quedan obsoletos \citep{carlsson2018comparison}. Su aplicación más conocida es para establecer comunicaciones seguras entre el servidor y el navegador web al realizar peticiones HTTP. Entre estos dos protocolos, SSL es el protocolo de seguridad más utilizado para la autenticación en Internet \citep{viega2002network}.
+\end{itemize}
+
+\paragraph{}
+Finalmente, se ha decidido usar el protocolo de ciberseguridad TLS, ya que esta es la solución más extendida de todas las comentadas y tiene soporte e integración directa con AMQP, el protocolo de comunicación que se va a utilizar para conectar el móvil y la pulsera.

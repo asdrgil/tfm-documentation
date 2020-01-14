@@ -1,0 +1,119 @@
+% Table of Contents - List of Tables/Figures/Listings and Acronyms
+
+%TODO: 2.2.1.1 (comaprativa de pulseras inteligentes) se va de la línea
+
+\refstepcounter{dummy}
+
+\pdfbookmark[1]{\contentsname}{tableofcontents} % Bookmark name visible in a PDF viewer
+
+\setcounter{tocdepth}{3} % Depth of sections to include in the table of contents - currently up to subsubsections
+
+\setcounter{secnumdepth}{3} % Depth of sections to number in the text itself - currently up to subsubsections
+
+%TODO: los enlaces a las secciones están sólo en el número. hacer que también el nombre sea un enlace
+\manualmark
+\renewcommand\contentsname{Índice}
+\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
+\tableofcontents 
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+
+\clearpage
+
+\begingroup 
+\let\clearpage\relax
+\let\cleardoublepage\relax
+\let\cleardoublepage\relax
+
+%----------------------------------------------------------------------------------------
+%	List of Figures
+%----------------------------------------------------------------------------------------
+
+\refstepcounter{dummy}
+%\addcontentsline{toc}{chapter}{\listfigurename} % Uncomment if you would like the list of figures to appear in the table of contents
+\renewcommand\contentsname{Lista de figuras}
+\pdfbookmark[1]{\listfigurename}{lof} % Bookmark name visible in a PDF viewer
+
+\listoffigures
+
+\vspace{8ex}
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	List of Tables
+%----------------------------------------------------------------------------------------
+
+\refstepcounter{dummy}
+%\addcontentsline{toc}{chapter}{\listtablename} % Uncomment if you would like the list of tables to appear in the table of contents
+\renewcommand\listtablename{Lista de tablas}
+\pdfbookmark[1]{\listtablename}{lot} % Bookmark name visible in a PDF viewer
+
+\listoftables
+        
+\vspace{8ex}
+\newpage
+    
+%----------------------------------------------------------------------------------------
+%	List of Listings
+%---------------------------------------------------------------------------------------- 
+
+%\refstepcounter{dummy}
+%\addcontentsline{toc}{chapter}{\lstlistlistingname} % Uncomment if you would like the list of listings to appear in the table of contents
+%\pdfbookmark[1]{\lstlistlistingname}{lol} % Bookmark name visible in a PDF viewer
+
+%\lstlistoflistings 
+
+%\vspace{8ex}
+%\newpage
+       
+%----------------------------------------------------------------------------------------
+%	Acronyms
+%----------------------------------------------------------------------------------------
+
+\refstepcounter{dummy}
+%\addcontentsline{toc}{chapter}{Acronyms} % Uncomment if you would like the acronyms to appear in the table of contents
+\pdfbookmark[1]{Acrónimos}{Acrónimos} % Bookmark name visible in a PDF viewer
+
+\markboth{\spacedlowsmallcaps{Acrónimos}}{\spacedlowsmallcaps{Acrónimos}}
+
+\chapter*{Acrónimos}
+\begin{acronym}[UML]
+\acro{ACC}{Aceleración}
+\acro{BDHI}{Inventario de hostilidad de Buss y Durkee}
+\acro{BVP}{Presión sanguínea}
+\acro{DFA}{Análisis de la función discriminante}
+\acro{ECG}{Electrocardiograma}
+\acro{EDA}{Actividad electrodérmica, también conocido como respuesta galvánica de la piel (GSR)}
+%, respuesta electrodérmica de la piel (EDR), reflejos psicogalvánicos de la piel (PGR), respuesta de conductancia de la piel (SCR), respuesta simpática de la piel (SSR) o nivel de conductancia de la piel (SCL)
+\acro{EMG}{Electromiograma}
+\acro{FKNN}{Método difuso de los k vecinos más cercanos}
+\acro{HHT}{Método de transformación de Hilbert-Huang}
+\acro{HR}{Ritmo cardiaco}
+\acro{IAPS}{Sistema internacional de fotografías afectivas}
+\acro{ICG}{Cardiograma de impedancia}
+\acro{IN}{Inclinación}
+\acro{IOT}{Internet de las cosas}
+\acro{IPRI}{Inventario de Pensamientos Relacionados con la Ira y la hostilidad}
+\acro{LDA}{Análisis de discriminación lineal}
+\acro{MBA}{Modelos de negocio multinivel}
+\acro{MBP}{Propagación hacia atrás de Marquardt}
+\acro{NFS}{Sistema neurodifuso}
+\acro{ORI}{Orientación}
+\acro{PA}{Presión atmosférica}
+\acro{PDD-NOS}{Trastorno generalizado del desarrollo no especificado}
+\acro{PPG}{Fotopletismógrafo}
+\acro{PCG}{Fonocardiograma}
+\acro{QDA}{Análisis discriminativo cuadrático}
+\acro{RF}{Bosques aleatorios}
+\acro{RNA}{Redes de neuronas artificales}
+\acro{RESP}{Actividad respiratoria}
+\acro{SAM}{Maniquíes de Auto Evaluación}
+\acro{SFFS}{Selección secuencial flotante hacia adelante}
+\acro{SDK}{Kit de desarrollo de software}
+\acro{SKT}{Temperatura de la piel}
+\acro{SVM}{Máquina de soporte de vectores}
+\acro{TEA}{Trastorno del espectro autista}
+\end{acronym}  
+                   
+\endgroup
