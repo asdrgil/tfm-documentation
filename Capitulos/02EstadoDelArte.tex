@@ -6,31 +6,29 @@
 
 \chapter{Estado del arte}
 
-\begin{quotation}\noindent\begin{small}\textbf{\spacedallcaps{RESUMEN}} \\
-En esta seccion, se pretende desglosar el estado actual así como parte de la historia que ha llevado a dicha actualidad de aquellos aspectos de la psicología y la informática que afectan de manera transversal a este trabajo. Para ello, se van a detallar los principales hallazgos tanto en psicología como en informática en lo que respecta a las emociones y su medición. Se va a comenzar con una introducción a las distintas teorías psicológicas que han pretendido acotar las emociones, así como los métodos desarrollados para la medición de las mismas en los humanos a partir de métodos que no impliquen técnicas fisiológicas, como son los cuestionarios. Tras esto, se van a explorar los métodos para la intervención con pacientes con la ira disfuncional. La parte que concierne a los aspectos psicológicos de esta sección finaliza con la fisiología de la ira, la revisión de los trabajos para su medición y la suscripción al código deontológico del Consejo General de Colegios Oficiales de Psicólogos de España. En lo que respecta a la parte informática, esta sección incluye un breve repaso de las aplicaciones de Internet de las Cosas así como una comparativa entre distintas pulseras inteligentes que se barajaban para la realización de este trabajo con la correspondiente explicación de la elección final de la pulsera inteligente que se ha utilizado.
-\end{small}\end{quotation}
-
+\paragraph{}
+En este capítulo, se pretende desglosar el estado actual así como parte de la historia que ha llevado a dicha actualidad de aquellos aspectos de la psicología (~\ref{cap1:sec:Emociones}) y la informática (~\ref{sec:iot}) que afectan de manera transversal a este trabajo. Para ello, se van a detallar los principales hallazgos tanto en psicología como en informática en lo que respecta a las emociones y su medición. Se va a comenzar con una introducción a las distintas teorías psicológicas que han pretendido acotar las emociones (~\ref{subsec:teorEmoc}), así como los métodos desarrollados para la medición de las mismas en los humanos sin mediciones fisiológicas (~\ref{subsubsec:medicionIra1}), como son los cuestionarios. Tras esto, se van a explorar los métodos para la intervención con pacientes con ira disfuncional (~\ref{subsubsec:intervencionPsico}). La parte que concierne a los aspectos psicológicos de esta sección finaliza con la fisiología de la ira (~\ref{subsubsec:fisioIra}), la revisión de los trabajos para su medición (~\ref{subsubsection:medirEmocFisio}) y la suscripción al código deontológico del Consejo General de Colegios Oficiales de Psicólogos de España (~\ref{section:codDeonto}). En lo que respecta a la parte informática, esta sección incluye un breve repaso de las aplicaciones de Internet de las Cosas (~\ref{subsec:accIntelig}) así como una comparativa entre distintas pulseras inteligentes que se barajaban para la realización de este trabajo (~\ref{subsec:pulserasInteligentes}) con la correspondiente explicación de la elección final de la pulsera inteligente que se ha utilizado (~\ref{subsubsec:comparativaPulseras}).
 
 %-------------------------------------------------------------------
 \section{Emociones}
 \label{cap1:sec:Emociones}
 
 \paragraph{}
-Las emociones se pueden entender como una reacción subjetiva que ocurre como resultado de cambios psicológicos y fisiológicos que influyen sobre el pensamiento y la conducta \citep{psicoemocional} y que constituyen una experiencia afectiva en cierta manera agradable o desagradable \citep{montanes2005psicologia}. De manera adicional, Wundt (\citeyear{wundt1896lectures}) entendía que las emociones podían definirse según las dimensiones agrado-desagrado, \\ tensión-relajación y excitación-calma.
+Las emociones se pueden entender como una reacción subjetiva que ocurre como resultado de cambios psicológicos y fisiológicos que influyen sobre el pensamiento y la conducta \citep{psicoemocional} y que constituyen una experiencia afectiva en cierta manera agradable o desagradable \citep{montanes2005psicologia}. De manera adicional, Wundt (\citeyear{wundt1896lectures}) entendía que las emociones podían definirse según las dimensiones agrado-desagrado, tensión-relajación y excitación-calma.
 
 \paragraph{}
 En línea con las observaciones de Wundt, más adelante se simplificó dicho modelo a dos variables con las que se podían representar todas las emociones. Este es el método compuesto por el binomio valencia-activación, que presupone que todas las emociones se pueden definir mediante el nivel de agrado-desagrado (valencia) y calma-activación (activación o \textit{arousal}). El autoreporte de la emoción con este modelo se puede hacer utilizando el método \ac{SAM}, con el que el paciente determina el grado de valencia y activación en una escala de 1 a 5, 7 o 9 (el número de posibilidades la establece el profesional en cuestión) ayudado de una serie de maniquíes como los que se pueden ver en las figuras~\ref{fig:valencia-num} y~\ref{fig:activacion-num}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=6.5cm, height=4cm]{Imagenes/valencia-num}
+    \includegraphics[scale=0.75]{Imagenes/valencia-num}
     \caption[Maniquíes para medir la valencia con el método de SAM extraídos del texto de Hernández (\citeyear{hernandez2016clasificacion}).]{Maniquíes para medir la valencia con el método de SAM (\citep{hernandez2016clasificacion}).}
     \label{fig:valencia-num}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=6.5cm, height=4cm]{Imagenes/activacion-num}
+    \includegraphics[scale=0.75]{Imagenes/activacion-num}
     \caption[Maniquíes para medir la activación con el método de SAM extraídos del texto de Hernández (\citeyear{hernandez2016clasificacion}).]{Maniquíes para medir la activacion con el método de SAM (\citep{hernandez2016clasificacion}).}
     \label{fig:activacion-num}
 \end{figure}
@@ -60,12 +58,13 @@ Todas las emociones tienen funciones que permiten tanto la adaptación social co
 %-------------------------------------------------------------------
 
 \subsection{Teorías emocionales}
+\label{subsec:teorEmoc}
 \paragraph{}
 Las principales corrientes teóricas del estudio de la emoción según Plutchick (\citeyear{plutchik1980emotion}) son:
 \begin{itemize}
     \item Evolucionista: iniciada por Darwin (\citeyear{darwin1967expresion}), afirmaba que las emociones evolucionaron porque eran adaptativas y permitían a los seres humanos sobrevivir y reproducirse. Por ejemplo, el miedo impulsaba a la persona a huir o luchar.
     
-    \item Psicofisiológica: iniciada por James-Lange (\citeyear{emotionJames}), establece que la fisiología de las emociones precede a las mismas. Siguiendo el ejemplo anterior, este autor establece que no corremos porque tengamos miedo, sino que tenemos miedo porque corremos.
+    \item Psicofisiológica: iniciada por James-Lange (\citeyear{emotionJames}), establece que la fi-\\siología de las emociones precede a las mismas. Siguiendo el ejemplo anterior, este autor establece que no corremos porque tengamos miedo, sino que tenemos miedo porque corremos.
     
     \item Neurológica: iniciada por Cannon-Bard (\citeyear{emotionCannon}), rebate la teoría de James-Lange puesto que las reacciones fisiológicas asociadas a determinadas emociones puede darse sin que entre en acción la emoción correspondiente. Por ejemplo, se puede acelerar el corazón tanto al sentir miedo como al realizar actividades deportivas. Estas teorías se basan en que las emociones se producen como respuesta a un estímulo cuando el tálamo se comunica con el cerebro.
     
@@ -140,14 +139,14 @@ Al categorizar la ira, el equipo de expertos de la universidad de Colorado dirig
 \subsubsection{Causas de la ira}
 %Se hace un salto de línea antes de 'concretas' porque corta mal las sílabas de esta palabra
 \paragraph{}
-En la mayoría de estudios sobre la ira, esta se suele acotar por el propio paciente mediante cuestionarios en los que bien se presentan situaciones con- \\ cretas que pueden provocar ira, bien se plantean afirmaciones relativas a la ira a las cuales el paciente debe responder en una escala de Likert. Un ejemplo de situación concreta que puede provocar la ira sería ``llegas tarde y el coche que tienes en frente va a 25 millas por hora siendo la limitación de la carretera de 40 millas por hora'', mientras que un ejemplo de afirmación relativa a la ira sería ``tengo ganas de pegarle a alguien''.
+En la mayoría de estudios sobre la ira, esta se suele acotar por el propio paciente mediante cuestionarios en los que bien se presentan situaciones con- \\ cretas que pueden provocar ira, bien se plantean afirmaciones relativas a la ira a las cuales el paciente debe responder en una escala de Likert. Un ejemplo de situación concreta que puede provocar la ira sería ``llegas tarde y el coche que tienes en frente va a 25 kilómetros por hora siendo la limitación de la carretera de 40 kilómetros por hora'', mientras que un ejemplo de afirmación relativa a la ira sería ``tengo ganas de pegarle a alguien''.
 
 \paragraph{}
 Por otro lado, en estos cuestionarios las causas que provocan la ira suelen referirse a situaciones muy específicas o demasiado difusas. Como término medio, se puede encontrar el estudio de Alcázar (\citeyear{alcazar2015que}) que versa precisamente sobre las causas que provocan la ira a los estudiantes universitarios. En este caso las fuentes que provocan ira son divididas en tres bloques:
 \begin{itemize}
-\item Interacción con los demás: mentiras, injusticia, impuntualidad, insultos, irresponsabilidad, traición, discusiones, prepotencia, que alguien diga lo que se tiene que hacer, pelea, hipocresía, ser ignorado, ser contradecido, ser criticado, no ser escuchado, que otra persona cambie los planes.
-\item Uno mismo: que no salgan las cosas como se quería, no poder resolver algo, no poder ayudar, trabajar en algo que no se quiere, perder algo, hacer tareas, dormir poco, perder el tiempo.
-\item Otros: atascos o retrasos en el transporte público, que deje de funcionar un dispositivo electrónico.
+\item Interacción con los demás: mentiras, injusticia, impuntualidad, insultos, irresponsabilidad, traición, discusiones, prepotencia, que alguien diga lo que se tiene que hacer, pelea, hipocresía, ser ignorado, ser contradecido, ser criticado, no ser escuchado, que otra persona cambie los planes...
+\item Uno mismo: que no salgan las cosas como se quería, no poder resolver algo, no poder ayudar, trabajar en algo que no se quiere, perder algo, hacer tareas, dormir poco, perder el tiempo...
+\item Otros: atascos o retrasos en el transporte público, que deje de funcionar un dispositivo electrónico...
 \end{itemize}
 
 Estas situaciones como se puede ver, son bastante genéricas y permiten acotar los motivos que provocan la ira, mientras que en otros estudios que se detallarán más adelante como S.T.A.X.I. o Novaco se intenta únicamente medir la ira.
@@ -166,12 +165,13 @@ A la hora de intentar realizar una intervención efectiva en los casos en los qu
 \end{itemize}
 
 \paragraph{}
-Para evitar caer en alguno de estos errores, es recomendable utilizar enfoques multimétodo-multimomento. En este punto es precisamente en el que accesorios inteligentes no intrusivos pueden ser útiles para obtener datos fiables fuera de la consulta.
+Para evitar caer en alguno de estos errores, es recomendable utilizar enfoques multimétodo-multimomento. En este punto es precisamente en el que accesorios inteligentes no intrusivos pueden ser útiles para obtener datos fia-\\bles fuera de la consulta.
 
 
 %-------------------------------------------------------------------
 
 \subsubsection{Métodos psicológicos para la medición de la ira}
+\label{subsubsec:medicionIra1}
 
 \paragraph{}
 Existen numerosas escalas de medición de emociones, en las que no todas ellas han sido validadas. Por ello, se hace especialmente relevante determinar una escala común de confiabilidad, es decir, del grado en que un instrumento de varios elementos mide consistentemente una muestra de la población \citep{celina2005aproximacion}. La escala que se suele utilizar para la medición de la ira es el alfa de Cronbach (\citeyear{cronbach1951coefficient}), que define el grado de correlación existente entre una serie de elementos y aquellos que se quiere medir. Por ejemplo, la correlación entre que el cielo esté nublado y que vaya a llover en la próxima hora es mayor que entre que el día que se quiera saber si va a llover es par o impar, que no tiene ninguna relación con aquello que se pretende inferir, por lo que el hecho de que el dato de si está el cielo nublado o no tendrá un alfa de Cronbach mayor que si el día es par a impar. De la misma manera, se pueden comparar un conjunto de preguntas, que suelen ser denominados métodos o modelos.
@@ -251,28 +251,27 @@ Las emociones siempre van acompañadas de reacciones somáticas, siendo las más
 \begin{itemize}
     \item Componente comportamental o conductual: incluye todos los movimientos musculares que se desencadenan tras una emoción (en el caso del miedo, la huida o el enfrentamiento, con sus correspondientes movimientos musculares).
     
-    \item Componente neurovegetativo: comprende los cambios en el sistema \\ nervioso autónomo para aportar una rápida movilización de energía que podría ser necesaria en caso de realizar movimientos enérgicos. En el caso del miedo, esto provocaría una activación de la rama simpática -para ganar tensión muscular y actividad cardíaca- y una desactivación de la rama parasimpática -para que la activación se centre en los músculos y no por ejemplo en procesos digestivos-.
+    \item Componente neurovegetativo: comprende los cambios en el sistema ner-\\vioso autónomo para aportar una rápida movilización de energía que podría ser necesaria en caso de realizar movimientos enérgicos. En el caso del miedo, esto provocaría una activación de la rama simpática -para ganar tensión muscular y actividad cardíaca- y una desactivación de la rama parasimpática -para que la activación se centre en los músculos y no por ejemplo en procesos digestivos-.
     
-    \item Componente hormonal: refuerzan las respuestas neurovegetativas \\ mediante la secrección de hormonas como la adrenalina o la noradrenalina.
+    \item Componente hormonal: refuerzan las respuestas neurovegetativas mediante la secrección de hormonas como la adrenalina o la noradrenalina.
 \end{itemize}
 
 \paragraph{}
-En las respuestas fisiológicas de las emociones, la amígdala juega un papel relevante, pues es donde se interpreta la información de las 	aferencias (señales que provienen de las neuronas sensoriales que transmiten información de lo que ocurre en distintas partes del cuerpo así como en el entorno) para redireccionar ésta a la región cerebral correspondiente que producirá la eferencia (respuestas neurológicas del sistema nervioso central tras la interpretación de las aferencias). En la tabla~\ref{tab:respEmoc}, se encuentra una lista de ejemplos de regiones cerebrales que reciben aferencias del núcleo central de la amígdala y las respuestas emocionales que controlan estas regiones.
+En las respuestas fisiológicas de las emociones, la amígdala juega un papel relevante, pues es donde se interpreta la información de las 	aferencias (señales que provienen de las neuronas sensoriales que transmiten información de lo que ocurre en distintas partes del cuerpo así como en el entorno) para redireccionar ésta a la región cerebral correspondiente que producirá la eferencia (respuestas neurológicas del sistema nervioso central tras la interpretación de las aferencias). En la tabla~\ref{tab:respEmoc}, se puede encontrar una lista de ejemplos de regiones cerebrales que reciben aferencias del núcleo central de la amígdala y las respuestas emocionales que controlan estas regiones.
 
 \begin{table}[]
-\centering
-\caption{Regiones cerebrales que reciben aferencias de la amígdala y las respuestas emocionales que controlan esas regiones.\citep{davis1992}}
+\caption{Regiones cerebrales que reciben aferencias de la amígdala y las respues-\\tas emocionales que controlan esas regiones.\citep{davis1992}}
 \label{tab:respEmoc}
 \begin{tabular}{|c|c|}
 \hline
-\textbf{Regiones cerebrales}                                                          & \textbf{Respuestas comportamentales y fisiológicas}                                                                                \\ \hline
-Hipotálamo lateral                                                                    & \begin{tabular}[c]{@{}c@{}}Activación simpática: aumento de la frecuencia cardíaca\\  y la presión arterial, palidez.\end{tabular} \\ \hline
-Núcleo motor dorsal del vago                                                          & Activación parasimpática: úlceras, micción, defecación.                                                                            \\ \hline
-Núcleo parabranquial                                                                  & Respiración agitada.                                                                                                               \\ \hline
-Área tegmental ventral                                                                & Alerta comportamental (dopamina).                                                                                                  \\ \hline
-Locus coeruleus                                                                       & Aumento de la vigilancia (noradrenalina).                                                                                          \\ \hline
-\begin{tabular}[c]{@{}c@{}}Núcleo reticular de la\\ protuberancia caudal\end{tabular} & Aumento de la respuesta al sobresalto.                                                                                             \\ \hline
-Sustancia gris periacueductal                                                         & Cese de la conducta (congelación).                                                                                                 \\ \hline
+\textbf{Regiones cerebrales}                                                          & \textbf{\begin{tabular}[c]{@{}c@{}}Respuestas comportamentales\\ y fisiológicas\end{tabular}}                                                  \\ \hline
+Hipotálamo lateral                                                                    & \begin{tabular}[c]{@{}c@{}}Activación simpática: aumento de la \\ frecuencia cardíaca y la presión arterial, \\ palidez.\end{tabular} \\ \hline
+Núcleo motor dorsal del vago                                                          & \begin{tabular}[c]{@{}c@{}}Activación parasimpática: \\ úlceras, micción, defecación\end{tabular}                                           \\ \hline
+Núcleo parabranquial                                                                  & Respiración agitada.                                                                                                                           \\ \hline
+Área tegmental ventral                                                                & Alerta comportamental (dopamina).                                                                                                              \\ \hline
+Locus coeruleus                                                                       & Aumento de la vigilancia (noradrenalina).                                                                                                      \\ \hline
+\begin{tabular}[c]{@{}c@{}}Núcleo reticular de la\\ protuberancia caudal\end{tabular} & Aumento de la respuesta al sobresalto.                                                                                                         \\ \hline
+Sustancia gris periacueductal                                                         & Cese de la conducta (congelación).                                                                                                             \\ \hline
 \end{tabular}
 \end{table}
 
@@ -332,6 +331,7 @@ Por último, un estudio de la Universidad de Murcia \citep{breva2000ira} pone de
 %-------------------------------------------------------------------
 
 \subsubsection{Soluciones para medir emociones a partir de señales fisiológicas}
+\label{subsubsection:medirEmocFisio}
 
 \paragraph{}
 En esta sección se esquematizan diversas soluciones tecnológicas que miden las emociones en función de datos fisiológicos. No todas las soluciones utilizan acesorios inteligentes, es más, algunas de ellas han sido sensorizadas en el laboratorio. En algunos casos los datos se han procesado posteriormente con varios clasificadores, en cuyo caso se ha incluído el clasificador que haya obtenido mayor fiabilidad. Las soluciones cuya fiabilidad está representada mediante varios números son aquellas en las que se ha medido las emociones usando la valencia y la activación, representando por tanto la fiabilidad de los resultados para cada uno de estos dos indicadores. Finalmente, es necesario indicar que la mayor parte de las referencias incluidas en esta sección son un subconjunto de dos tablas del trabajo de López Hernández (\citeyear{hernandez2016clasificacion}), si bien ha sido necesario consultar el contenido de los artículos citados puesto que en algunas ocasiones las tablas de López Hernández (\citeyear{hernandez2016clasificacion}) no incluían todos los datos que se estaban buscando, los datos eran confusos o directamente no coincidían con el artículo que se estaba citando.
@@ -507,7 +507,7 @@ En esta sección se esquematizan diversas soluciones tecnológicas que miden las
 %subsection Conclusiones
 
 \paragraph{}
-Tras analizar las soluciones presentadas, se puede ver que los dispositivos más usados son los de Biopac en distintas versiones. Biopac es una empresa especializada en la sensorización fisiológica con un amplio catálogo de productos que pueden ser combinados entre sí. Todos ellos cuentan con bastante documentación del fabricante, aunque tiene la contrapartida de no tener habilitado un foro en el que se habilite la comunicación abierta entre la comunidad y los fabricantes, facilitando esto el aprendizaje colectivo. Por otro lado, un punto a considerar de estas soluciones es que muchas de ellas son de un precio superior a 500 dólares, que es un precio muy superior a los 70-150€ que pueden costar algunas pulseras inteligentes con sensores biométricos. Además en muchos casos el único dispositivo adicional que requieren las pulseras inteligentes son un teléfono móvil con conexión a Internet para hacer de \textit{gateway}, lo que hace que las pulseras inteligentes sean una solución más accesible y asequible que las soluciones que propone Biopac. Las dos respuestas fisiológicas que aparecen con mayor frencuencia son ECG y EDA, que además, tal y como se comentó en la sección ~\ref{subsec:fisioEmoc} coinciden con dos respuestas fisiológicas que se pueden utilizar para detectar la ira. Por otro lado, se puede ver que la gran mayoría de constantes fisiológicas coinciden entre los distintos experimentos, a excepción de alguna como ICG y PPG. En cuanto a la medición de las emociones, todas ellas miden al menos tres de ellas, existiendo una preponderancia de soluciones que miden todas ellas a través de la valencia y la excitación. Con el fin de generarles estas emociones, los participantes han realizado tareas bastante diversas con el factor común entre ellas de que ninguno de estos experimentos ha incluído estudios de campo o ejercicio físico. Los dos enfoques mayoritarios han consistido en la inducción de emociones mediante distintos medios audiovisuales (por ejemplo, con música de distintos tipos o vídeos) o mediante la realización de tareas como puede ser jugar a videojuegos o resolver tareas con las que se pretenda generar estrés en el paciente.
+Tras analizar las soluciones presentadas, se puede ver que los dispositivos más usados son los de Biopac en distintas versiones. Biopac es una empresa especializada en la sensorización fisiológica con un amplio catálogo de productos que pueden ser combinados entre sí. Todos ellos cuentan con bastante documentación del fabricante, aunque tiene la contrapartida de no tener habilita-\\do un foro que permita la comunicación abierta entre la comunidad y los fabricantes, facilitando esto el aprendizaje colectivo. Por otro lado, un punto a considerar de estas soluciones es que muchas de ellas son de un precio superior a los 500 dólares, que es un precio muy superior a los 70-150€ que pueden costar algunas pulseras inteligentes con sensores biométricos. Además en muchos casos el único dispositivo adicional que requieren las pulseras inteligentes son un teléfono móvil con conexión a Internet para hacer de \textit{gateway}, lo que hace que las pulseras inteligentes sean una solución más accesible y asequible que las soluciones que propone Biopac. Las dos respuestas fisiológicas que aparecen con mayor frencuencia son ECG y EDA, que además, tal y como se comentó en la sección~\ref{subsec:fisioEmoc} coinciden con dos respuestas fisiológicas que se pueden utilizar para detectar la ira. Por otro lado, se puede ver que la gran mayoría de constantes fisiológicas coinciden entre los distintos experimentos, a excepción de alguna como ICG y PPG. En cuanto a la medición de las emociones, todas ellas miden al menos tres de ellas, existiendo una preponderancia de soluciones que miden todas ellas a través de la valencia y la excitación. Con el fin de generarles estas emociones, los participantes han realizado tareas bastante diversas con el factor común entre ellas de que ninguno de estos experimentos ha incluído estudios de campo o ejercicio físico. Los dos enfoques mayoritarios han consistido en la inducción de emociones mediante distintos medios audiovisuales (por ejemplo, con música de distintos tipos o vídeos) o mediante la realización de tareas como puede ser jugar a videojuegos o resolver tareas con las que se pretenda generar estrés en el paciente.
 
 \paragraph{}
 Entre los clasificadores utilizados, se puede observar un claro predominio de SVM, bien como clasificador único, bien como parte de una cadena de clasificadores, como puede ser QDA o RNA. La precisión que se obtiene con este clasificador varía entre las soluciones entre el 62 y el 95\%. En la comparativa entre las soluciones que intentan medir un conjunto concreto de emociones frente a aquellas soluciones que pretenden medir todas ellas mediante la valencia, se puede observar que no existen diferencias significativas en las precisiones alcanzadas. Por otro lado, la precisión conseguida en cada una de estas pruebas debe ser analizada con cautela, pues entre ellas hay una gran variación entre las tareas a realizar durante el experimento, la medición objetivo y los métodos de evaluación, por lo que sería incorrecto evaluar de manera aislada cada una de las variables de los distintos experimentos, al no permanecer constantes el resto de ellas. Por ejemplo, la precisión alcanzada en cualquiera de estos experimentos puede variar entre aquellos que intentan inducir una emoción al paciente y contrastan esta (que se establece como variable fija) con la emoción detectada en el experimento con aquellos casos que esta evaluación se realiza respecto a una escala de Likert rellenada por el paciente, pues no existe una correspondencia perfecta entre la autopercepción de una emoción pasada que aquella que se experimentó en aquel momento.
@@ -515,6 +515,7 @@ Entre los clasificadores utilizados, se puede observar un claro predominio de SV
 %-------------------------------------------------------------------
 
 \section{Internet de las cosas}
+\label{sec:iot}
 \paragraph{}
 El concepto de Internet de las cosas (IOT) se puede definir como una infraestructura global que permite servicios avanzados a partir de una interconexión física y virtual de las cosas basado en tecnologías de información interoperable \citep{itu2012new}. Es importante recalcar el plural en lo que respecta a la tecnología: IOT no hace referencia a una tecnología concreta, sino más bien a un conglomerado de ellas que se presentan con una estructura que en su conjunto las define como tal.
 
@@ -563,6 +564,7 @@ Algunos de los principales dilemas a los que hay que buscar solución en IOT son
 %-------------------------------------------------------------------
 
 \subsection{Acesorios inteligentes}
+\label{subsec:accIntelig}
 \paragraph{}
 Los acesorios inteligentes (también denominados \textit{wearables}) son objetos que se usan cotidianamente que han sido informatizados para, en muchos casos, convertirse en dispositivos IOT. Los más comunes son las pulseras y relojes que ofrecen al usuario información sobre su salud en función de determinados parámetros que la propia pulsera/reloj mide, o simplemente permitir otro modo de interacción tecnológica con acceso a internet.
 
@@ -655,7 +657,7 @@ En las figuras~\ref{fig:w1},~\ref{fig:w2},~\ref{fig:w3},~\ref{fig:w4},~\ref{fig:
 \subsubsection{Pulseras inteligentes}
 \label{subsubsec:pulserasInteligentes}
 \paragraph{}
-Actualmente existe una gran cantidad de pulseras inteligentes enfocadas a personas que quieran mejorar su rendimiento deportivo así como diversos estudios que comparan su fiabilidad \citep{sushames2016validity} \citep{baroni2015fitbit} \citep{kooiman2015reliability}. En esta sección se ha optado sin embargo por no saturar los ejemplos de las pulseras inteligentes de este último tipo puesto que es un enfoque que se aleja bastante del desarrollo de este trabajo.
+Actualmente existe una gran cantidad de pulseras inteligentes enfocadas a personas que quieran mejorar su rendimiento deportivo así como diversos estudios que comparan su fiabilidad \citep{sushames2016validity} \citep{baroni2015fitbit} \citep{kooiman2015reliability}. En esta sección se ha optado sin embargo por no saturar los ejemplos de las pulseras inteligentes de este último tipo puesto que es un enfoque que se aleja bastante del desarrollo de este trabajo. A continuación, se van a describir las características principales de una serie de pulseras inteligentes que sirven para medir distintas variables fisiológicas:
 
 \begin{itemize}
     \item Fitbit Flex (\citeyear{martinez2015wristband}).
@@ -701,6 +703,7 @@ Actualmente existe una gran cantidad de pulseras inteligentes enfocadas a person
 \end{itemize}
 
 \subsubsection{Comparativa de pulseras inteligentes}
+\label{subsubsec:comparativaPulseras}
 \paragraph{}
 En la tabla~\ref{tab:accesoriosComparativa} se muestra una comparativa de los accesorios inteligentes citados en la sección anterior en base a la caracterización fisiológica de la ira descrita en la sección~\ref{subsubsec:fisioIra}. Como se puede ver en la tabla~\ref{tab:accesoriosComparativa}, se han descartado cinco de las trece características de la ira puesto que estas no se pueden medir con pulseras o anillos inteligentes al hacer referencia a variaciones de partes del cuerpo que no incluyen a los dedos de las manos o las muñecas (es el caso de la temperatura periférica facial) o ser referencias a sensaciones subjetivas que no se pueden discretizar de manera directa mediante pulseras o anillos inteligentes (es el caso de la sensación de desmayo, los sudores fríos, dolor de estómago y náuseas).
 
@@ -732,6 +735,8 @@ Respecto a las otras opciones comparadas, Jawbone UP 24 no está diseñada para 
 %-------------------------------------------------------------------
 
 \section{Código deontológico}
+\label{section:codDeonto}
+
 \subparagraph{}
 Puesto que en este proyecto se va a realizar una evaluación con seres humanos, es necesario conocer el código deontológico utilizado en psicología con el fin de evitar malas prácticas. Para este proyecto, se ha seguido el código deontológico utilizado por el Consejo General de Colegios Oficiales de Psicólogos de España en su versión aprobada el 6 de marzo de 2010 (a pesar de realizar este trabajo como informático y por tanto no estar regido por dicho código deontológico, se considera imprescindible asumir de propia iniciativa dicho código deontológico). Los principales postulados que afectan directamente a la investigación de este proyecto son los siguientes:
 \begin{itemize}

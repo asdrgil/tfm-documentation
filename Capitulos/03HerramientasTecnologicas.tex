@@ -6,14 +6,14 @@
 
 \chapter{Herramientas tecnológicas}
 
-\begin{quotation}\noindent\begin{small}\textbf{\spacedallcaps{RESUMEN}} \\
-En esta sección, se va a explicar las distintas opciones tecnológicas que se han barajado a la hora de realizar este trabajo hasta llegar a la solución final. Las decisiones clave han sido la elección de protocolos de comunicación de los datos, el tipo de base de datos para persistir los registros generados durante las interacciones entre dispositivos y la elección de la pulsera inteligente para realizar estas mediciones. Otras elecciones que han sido más fáciles de resolver, como por ejemplo, las distintas opciones de protocolos de ciberseguridad que podrían haberse implementado también serán detalladas en esta sección.
-\end{small}\end{quotation}
+\paragraph{}
+En este capítulo, se van a explicar las distintas opciones tecnológicas que se han barajado a la hora de realizar este trabajo hasta llegar a la solución final. Las decisiones clave han sido la elección de protocolos de comunicación de los datos (~\ref{sec:protoCom}), el tipo de base de datos para persistir los registros generados durante las interacciones entre dispositivos (~\ref{sec:tipoBD}) y los protocolos de ciberseguridad en los distintos puntos de la solución (~\ref{sec:ciber}. A su vez, las distintas opciones de protocolos de ciberseguridad que podrían haberse implementado también serán detalladas en esta sección.
 
 
 
 %-------------------------------------------------------------------
 \section{Bases de datos}
+\label{sec:tipoBD}
 \paragraph{}
 Las bases de datos son conjuntos de información almacenadas con un determinado orden para facilitar su manipulación. Los dos tipos principales de bases de datos son:
 
@@ -51,22 +51,24 @@ Por último, tanto MongoDB como Couchbase cuentan con contenedores Docker ya con
 \end{itemize}
 
 \paragraph{}
-Finalmente, se ha decidido usar MongoDB ya que es una base de datos con una sintaxis sencilla, con librería específica en Python, es ideal para soluciones distribuidas y es una base de datos no relacional, lo que facilitará el almacenamiento de datos con estructuras variables.
+En este trabajo, se ha decidido usar MongoDB ya que es una base de datos con una sintaxis sencilla, con librería específica en Python, es ideal para soluciones distribuidas y es una base de datos no relacional, lo que facilitará el almacenamiento de datos con estructuras variables. Estas características se ajustan a posibles actualizaciones futuras de las estructuras de la base de datos sin tener que migrar todos los registros que ya están almacenados. Por ejemplo, si se permitiese en el futuro que el paciente pudiese subir una fotografía para identificarse, el token identificador de esta fotografía se podría añadir para los nuevos pacientes en la misma colección que la del resto de registros de pacientes antiguos sin fotografías. Por último, el flujo de datos de episodios puede ser muy elevado a largo plazo, por lo que una solución distribuida como es el caso de MongoDB facilitará la escalabilidad de la base de datos.
 
 \section{Protocolos de comunicación}
+\label{sec:protoCom}
 \paragraph{}
-Los datos sensorizados por la pulsera electrónica deben de ser enviados periódicamente al servidor para poder ser posteriormente analizados por la terapeuta. Estos datos son alfanuméricos y no es necesario disponer de ellos en el servidor tan pronto como sean generados. Por contra, es importante que la aplicación no requiera de un elevado coste de uso de red, pues se espera que la aplicación no sea intensiva en el uso de recursos para que por un lado pueda ser usado en una mayor gama de celulares y por otro no suponga una molestia al usuario que termine con la desactivación de la aplicación.
+Los datos sensorizados por la pulsera electrónica deben de ser enviados periódicamente al servidor para poder ser analizados por la terapeuta. Estos datos son alfanuméricos y no es necesario disponer de ellos en el servidor tan pronto como sean generados, puesto que cuando van a ser revisados por la terapeuta es antes de la consulta para preparar la terapia y durante la misma para ratificar la información almacenada del paciente. Es importante que la aplicación no requiera de un elevado coste de uso de red ni consuma excesiva batería del móvil, pues se espera que la aplicación no sea intensiva en el uso de recursos para que por un lado pueda ser usado en una mayor gama de teléfonos móviles y por otro no suponga una molestia al usuario que termine con la desactivación de la aplicación. Esto se debe a que los teléfonos móviles inteligentes actualmente se utilizan para un abanico muy amplio de tareas que van más allá de las llamadas telefónicas, por lo que, al crecer con los años la dependencia de las personas en estos dispositivos, es importante que la aplicación no interfiera gravemente con los otros usos que se le vaya a dar al dispositivo.
 
 \paragraph{}
-Los protocolos de comunicación que se van a analizar van a depender en cada caso de las características de los dispostivos que se comunican así como de la ciberseguridad necesaria para entablar dicha comunicación. A continuación se van a detallar los tipos de comunicaciones que son necesarias en el proyecto con las distintas implementaciones posibles.
+Los protocolos de comunicación que se van a analizar van a depender en cada caso de las características de los dispostivos que se comunican así como de la ciberseguridad necesaria para entablar dicha comunicación. A conti-\\nuación se van a detallar los tipos de comunicaciones que son necesarias en el proyecto con las distintas implementaciones posibles.
 
 \subsection{Comunicación entre el móvil Android y la pulsera}
 \paragraph{}
 La característica más importante que debe tener el protocolo utilizado es que debe ser de muy bajo consumo para maximizar la duración de la batería de la pulsera inteligente. A su vez, esta comunicación está limitada por los protocolos válidos entre los distintos modelos de móviles y de pulseras. Por este motivo, la única opción viable actualmente (2019) es utilizar el protocolo BLE, puesto que es compatible con la gran mayoría de dispositivos móviles inteligente así como de las pulseras inteligentes, lo que hace que la solución no quede anclada a ningún elemento físico. Este protocolo, como su propio nombre indica, es un protocolo de bajo consumo lo que reducirá el consumo eléctrico respecto a otros protocolos como Bluetooth 2.0.
 
 \subsection{Comunicación entre el dispositivo móvil Android y el servidor}
+\label{subsec:comAndroidServ}
 \paragraph{}
-Una vez han llegado los datos de las sensorizaciones al móvil, estos datos se envían al servidor. Para realizar este envío, se puede realizar mediante peticiones Hypertext Transfer Protocol(HTTP), Message Queuing Telemetry Transport (MQTT) o Advanced Message Queuing Protocol (AMQP).
+Una vez han llegado los datos de las sensorizaciones al móvil, estos datos se envían al servidor. Este envío se puede realizar mediante peticiones Hypertext Transfer Protocol(HTTP), Message Queuing Telemetry Transport (MQTT) o Advanced Message Queuing Protocol (AMQP).
 
 \paragraph{}
 La principal diferencia entre las peticiones HTTP y las peticiones MQTT Y AMQP es el consumo de recursos de estas soluciones, siendo MQTT un protocolo más eficiente en el envío de paquetes que HTTP \citep{yokotani2016comparison}, que es un elemento crítico en IOT, puesto que los dispositivos IOT no suelen estar conectados a la corriente continua, lo que hace que el consumo de energía de los dispositivos IOT sea un factor crucial a la hora de tomar decisiones tecnológicas. Por este motivo, el protocolo HTTP queda descartado.
@@ -81,9 +83,10 @@ AMQP se diferencia principalmente de MQTT en que en AMQP el servidor puede manda
 En lo que respecta a la autenticación y la ciberseguridad, ambos protocolos pueden ser integrados con TLS. El ancho de banda de esta solución en MQTT únicamente se ve notablemente resentida en la etapa de autenticación, mientras que en las fases posteriores de envío de datos el rendimiento es muy similar a las soluciones sin TLS \citep{hivemq}.
 
 \paragraph{}
-Finalmente, se ha decidido usar el protocolo AMQP ya que en su implementación de RabbitMQ permite una fácil integración en múltiples lenguajes y añadíendole el protocolo de seguridad TLS, es un protocolo de baja latencia (lo que reduce el consumo de recursos de la app) y permite la comunicación bidireccional entre el servidor y el cliente, facilitando el intercambio de datos entre ambos.
+En este trabajo se ha decidido usar el protocolo AMQP ya que en su implementación de RabbitMQ permite una fácil integración en múltiples lenguajes. Además usaremos el protocolo de seguridad TLS, es un protocolo de baja latencia (lo que reduce el consumo de recursos de la app) y permite la comunicación bidireccional entre el servidor y el cliente, facilitando el intercambio de datos entre ambos. Como se ha comentado en esta sección, este protocolo de baja latencia tiene unas cabeceras más pequeñas en los paquetes de datos, lo que significa un menor consumo de datos, que es un requisito alineado con lo que se comentaba al principio de este apartado de intentar buscar una solución lo más eficiente posible en el consumo de datos, lo que a su vez implica un menor consumo de la batería del móvil.
 
 \section{Ciberseguridad}
+\label{sec:ciber}
 \paragraph{}
 Como se va a tratar con datos biométricos sensibles, es importante asegurarse de que esta información no acabe en manos indeseadas. Con este fin, es importante tomar las siguientes medidas de seguridad:
 \begin{enumerate}
@@ -95,8 +98,6 @@ Como se va a tratar con datos biométricos sensibles, es importante asegurarse d
 \paragraph{}
 El punto más vulnerable de nuestra solución será el envío de datos de la pulsera al dispositivo Android, pues este envío viene configurado por el propio desarrollador de la pulsera y se realiza sin ningún tipo de cifrado, por lo que si un atacante se hace con el control del dispositivo Android, podrá leer directamente los datos que son enviados por BLE sin tener que forzar ni nuestra app ni nuestras bases de datos.
 
-
-\subsection{Autenticación y autorización en el servidor web}
 \paragraph{}
 El servidor web debería requerir que los usuarios se autentiquen antes de poder operar con los datos de las mediciones para evitar accesos indeseados a la base de datos con los registros de sensorizaciones. A continuación se van a describir distintos métodos de autenticación que se pueden implementar.
 
@@ -142,4 +143,4 @@ El servidor web debería requerir que los usuarios se autentiquen antes de poder
 \end{itemize}
 
 \paragraph{}
-Finalmente, se ha decidido usar el protocolo de ciberseguridad TLS, ya que esta es la solución más extendida de todas las comentadas y tiene soporte e integración directa con AMQP, el protocolo de comunicación que se va a utilizar para conectar el móvil y la pulsera.
+Se ha decidido usar el protocolo de ciberseguridad TLS, ya que esta es la solución más extendida de todas las comentadas y tiene soporte e integración directa con AMQP, el protocolo de comunicación que se va a utilizar para conectar el móvil y la pulsera, tal y como se indicó en el apartado~\ref{subsec:comAndroidServ}.
