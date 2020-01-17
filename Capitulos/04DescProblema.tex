@@ -135,7 +135,7 @@ La pantalla de la figura~\ref{fig:c4:mockup6} es la segunda opción que se dio p
 Una vez creados los prototipos en papel, se fijó una reunión con la psicóloga en la que se presentaron las distintas alternativas. Las principales conclusiones que se obtuvo de esta reunión fueron las siguientes:
 \begin{itemize}
     \item La manera de emparejar la pulsera y el paciente que aparece en la figura~\ref{fig:c4:mockup2} es apropiada.
-    \item Las dos alternativas para calibrar el dispositivo que se observan en las figuras~\ref{fig:mock5} y~\ref{fig:mock6} son apropiadas. No ve ninguna razón de peso para elegir una u otra, por lo que finalmente se optó por la alternativa de la figura~\ref{fig:c4:mockup6}, ya que le facilita más información al usuario y le permite rectificar la acción si pulsó accidentalmente alguno de los botones de la pantalla.
+    \item Las dos alternativas para calibrar el dispositivo que se observan en las figuras~\ref{fig:c4:mock5} y~\ref{fig:c4:mock6} son apropiadas. No ve ninguna razón de peso para elegir una u otra, por lo que finalmente se optó por la alternativa de la figura~\ref{fig:c4:mockup6}, ya que le facilita más información al usuario y le permite rectificar la acción si pulsó accidentalmente alguno de los botones de la pantalla.
     \item El termómetro es una buena opción deberá aparecer en horizontal, estando el menor nivel de ira a la izquierda y el mayor en el otro extremo del termómetro, siguiendo la direccionalidad de la lectura en castellano.
     \item Para indicar el grado de ira, es mejor hacerlo con palabras (como en la figura~\ref{fig:c4:mockup2}) que de manera numérica (como en la figura~\ref{fig:c4:mockup1}). Los estados que discreticen el grado de ira que verá el paciente deberán ser reducidos para que el paciente pueda identificar su ordinalidad con facilidad. Así, la solución se limitará a cinco estados.
     \item Cuando varíe el grado de ira en el termómetro, no solo debe variar cuánto de lleno se encuentra éste, sino también su color. La terapeuta indicó que, tal y como comenta Valdez (\citeyear{valdez1994effects}), existe una relación estrecha entre emociones y colores, por lo que establecer por ejemplo que el rojo es el estado de calma y el verde es el estado de mayor percepción de la ira es un cambio significativo respecto a la asociación opuesta. En estudios experimentales se ha podido comprobar que los colores de mayor longitud de onda como son el rojo o el amarillo provocan mayor activación que otros de menor longitud de onda como es el verde. A su vez, Jacobs y Sues (\citeyear{jacobs1975effects}) han comprobado en un estudio con los colores rojo, amarillo, verde y azul que existe una mayor asociación del estrés con los colores rojo y amarillo respecto al verde y el azul. Así, a la hora de representar los colores asociados a cada nivel de ira, los colores asociados a estos niveles deberían ser (de menor a mayor nivel de ira): verde, verde-amarillo, amarillo, amarillo-rojo, rojo.
@@ -309,7 +309,7 @@ Una vez creados los prototipos en papel de la aplicación web, nos reunimos con 
     \item Se considera apropiado que en el resumen de los episodios de ira figure el tiempo que se mantuvo el paciente en cada uno de los estados, tal y como aparece en el primer elemento de la figura~\ref{fig:c4:mockup14}.
     \item La información de la pauta recomendada para cada episodio, tal y como aparece en el tercer elemento de la figura~\ref{fig:c4:mockup14} se considera apropiada, pero es incompleto, ya que para un mismo estado al paciente se le puede haber recomendado más de una pauta. El paciente puede haber descartado pautas previas, y esta información es importante que quede registrada.
     \item La figura~\ref{fig:c4:mockup15} muestra la representación los episodios en formato histograma, lo que es correcto. El gráfico de tarta que aparece en la gráfica ~\ref{fig:c4:mockup20} no aporta información útil, porque cómo se ha desarrollado el episodio es relevante, como por ejemplo el tiempo que ha pasado en cada estado. El segundo elemento de la figura~\ref{fig:c4:mockup7} hace una aproximación a esto pero es incompleto, puesto que es necesario que sea una gráfica interactiva que permita poder ampliarla para por ejemplo poder seleccionar solo un episodio e ir viéndolos uno a uno. Para este fin, la terapeuta propone basarse en el ejemplo de las gráficas de los desfibriladores.
-    \item Las figuras~\ref{fig:c4:mockup17} y ~\ref{fig:c4:mockup18} son elementos adicionales que sirven para decorar las pantallas que se iban generando. La figura~\ref{fig:c4:mockup17} se considera apropiada mientras que el primer elemento de la figura~\ref{mockup18} se considera que no aporta información útil para la terapeuta.
+    \item Las figuras~\ref{fig:c4:mockup17} y ~\ref{fig:c4:mockup18} son elementos adicionales que sirven para decorar las pantallas que se iban generando. La figura~\ref{fig:c4:mockup17} se considera apropiada mientras que el primer elemento de la figura~\ref{fig:c4:mockup18} se considera que no aporta información útil para la terapeuta.
     \item En la figura~\ref{fig:c4:mockup19} aparecen dos modelos de tablas y una serie de filtros para poder buscar los pacientes en dichas tablas. Los filtros se consideran apropiados, y ambos formatos de tablas también a excepción de las columnas que indican el número de alertas de cada una de las intensidades de la ira de cada paciente, ya que esta información sin estar agrupada en episodios y desglosada en fechas, no aporta información relevante al terapeuta.
 \end{itemize}
 
@@ -454,28 +454,207 @@ Tras la reunión con la terapeuta, los puntos que se sacaron en claro fueron los
 \section{Implementación}
 \label{sec:c4:impl}
 \paragraph{}
-La pulsera es un dispositivo IOT que obtendrá las sensorizaciones del paciente cada [TODO] segundos. Concretamente, obtendrá los datos de sudoración, [TODO: constantes fisiológicas medidas]. Para ello, se ha elegido el modelo [TODO: modelo y descripción del modelo de la pulsera haciendo referencia a la comparación de pulseras del estado del arte].
+A partir de las conclusiones extraidas en las dos anteriores iteracciones, se implementó una solución que cumpliese con todos los requisitos extraídos de las reuniones con la persona experta. A continuación se encuentra el resultado final de este proceso.
+
+\subsection{Diseño de la aplicación móvil de los pacientes}
+[TODO]
+
+\subsection{Diseño de la aplicación web del terapeuta}
+\paragraph{}
+En la aplicación web, se han distinguido cuatro elementos principales: las pautas, los grupos de pautas (que facilitan la asignación de pautas a los pacientes), los pacientes y los episodios. En el diseño de la web, se ha seguido el criterio de que, partiendo de estos cuatro elementos, haya cuatro tipos de pantallas: registro, visualización, modificación y búsqueda del elemento. El único de los cuatro elementos que no consta de estos cuatro tipos de pantallas es el de los episodios. Los episodios están vinculados a cada paciente y son inmutables. Esta información proviene de la aplicación móvil y sólo se podrá visualizar y filtrar en búsquedas de episodios. En ningún caso se podrá registrar o modificar episodios de pacientes desde la propia web, ya que esta información debe provenir de la transformación de las sensorizaciones realizadas en la pulsera. A continuación, se pueden ver todas las pantallas que se han incluido en la página web del terapeuta.
 
 \paragraph{}
-Estas sensorizaciones se enviarán por BLE al dispositivo móvil con sistema operativo Android del paciente. La conexión será gestionada mediante una app creada para este proyecto, que irá guardando las sensorizaciones en una base de datos local de SQLite. La base de datos local estará encriptada con el algoritmo [TODO: rellenar cuando termine la app] para evitar dos posibles ataques: por un lado, si el paciente tiene el móvil \textit{rooteado} y la base de datos no está encriptada, si se instalase una aplicación maligna, esta podría acceder a los datos de la base de datos. Por otro, aunque el paciente no tuviera el móvil \textit{rooteado}, es necesario prevenir que estos datos se vieran expuestos si una tercera persona no autorizada tuviera acceso físico al mismo por ejemplo porque hubiese dejado desatendido su dispositivo temporalmente o le robasen el dispositivo.
+En la figura~\ref{fig:c4:impl1} se puede ver la pantalla para registrar un terapeuta. El único campo unívoco es el del correo electrónico.
 
 \paragraph{}
-En las aplicaciones móviles es crucial optimizar al máximo el uso de recursos para evitar que la aplicación creada interfiera con el normal funcionamiento del dispositivo ralentizándolo, consumiendo muchos datos o almacenando datos innecesarios. En esta línea, la aplicación borrará las sensorizaciones guardadas en local una vez hayan sido transformadas en episodios. Un episodio es un conjunto de sensorizaciones del paciente que muestran la transición del mismo desde que está calmado, se detecta la ira y vuelve al estado inicial. Como en el trabajo una vez transformada las sensorizaciones en posibles episodios esta información no es útil, se borra en cuanto se ha realizado esta conversión.
+En la figura~\ref{fig:c4:impl2} se muestra la pantalla para iniciar sesión. Es a la página a la que se redireccionan todas las peticiones que se realicen a páginas válidas del dominio que requieran que el usuario esté identificado pero no lo esté. En caso de marcar la casilla "recordar usuario", se guardará una cookie en el navegador con la sesión del mismo.
+
+\begin{figure}[h]
+    \centering
+    %width=3cm, height=3cm
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/15-registrarTerapeuta.png}
+    \caption[Registrar terapeuta en la versión final de la web]{Registrar terapeuta en la versión final de la web}
+    \label{fig:c4:impl1}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/14-iniciarSesion.png}
+    \caption[Iniciar sesión en la versión final de la web]{Iniciar sesión en la versión final de la web}
+    \label{fig:c4:impl2}
+\end{figure}
 
 \paragraph{}
-[TODO: expicar cuando esté la app de Android cómo se transforman las sensorizaciones en episodios.]
+[TODO: página principal de la web]
 
 \paragraph{}
-Por otro lado, los episodios del paciente sí persisten en la base de datos local de SQLite del dispositivo Android del paciente, ya que éste podrá acceder al archivo histórico de sus episodios para poder ver su progreso. Cada cinco minutos, se realizará una comunicación con el servidor para indicarle si en los últimos cinco minutos se han producido episodios de ira, y en cuyo caso se explicitará el episodio.
+En las figuras~\ref{fig:c4:impl4} y ~\ref{fig:c4:impl5} se puede ver cómo se registraría un paciente. Una vez se pulsa sobre el botón de registrar paciente en la figura~\ref{fig:c4:impl4}, se comprobarían si no se está incluyendo un paciente duplicado en la base de datos y, si no es así, se pasaría a la pantalla de la figura~\ref{fig:c4:impl5}. Esta es una pantalla para vincular el paciente que se ha registrado con el dispositivo móvil del paciente. Para ello, el paciente deberá introducir en la aplicación de Android el código que aparecerá por pantalla al terapeuta. Este código se eliminará de la base de datos (y, por tanto, se invalidará) tras cinco minutos para evitar que un atacante pueda hacer ataques de fuerza bruta y acabe consiguiendo emparejarse con algún paciente, suplantando su identidad. Este método de emparejamiento está diseñado dando por sentado que el paciente acudirá a la consulta con su dispositivo móvil y que el terapeuta procederá a registrarle en la aplicación en la propia consulta.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/14-iniciarSesion.png}
+    \caption[Página principal en la versión final de la web (TODO)]{Página principal en la versión final de la web (TODO)}
+    \label{fig:c4:impl3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/1-registrarPaciente.png}
+    \caption[Página de registro de pacientes en la versión final de la web]{Página de de registro de pacientes en la versión final de la web}
+    \label{fig:c4:impl4}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/1-registrarPaciente-2.png}
+    \caption[Página de sincronización del dispositivo en el registro de pacientes en la versión final de la web]{Página de sincronización del dispositivo en el registro de pacientes en la versión final de la web}
+    \label{fig:c4:impl5}
+\end{figure}
 
 \paragraph{}
-Como se ha comentado al principio de esta sección, cuando se detecte que el paciente pueda estar sufriendo un episodio de ira, se le proveerán de pautas en tiempo real que puedan ayudar a rebajar su nivel de ira. Las pautas recomendadas en ese momento podrán ser descartadas por el paciente y podrá añadir comentarios sobre la idoneidad de las mismas. Las pautas que aparezcan y la manera en la que el paciente interaccione con las mismas (si introduce comentarios, si las descarta, si han sido efectivas a la hora de rebajar el nivel de ira) será registrado en la base de datos local ya que esta información ayudará luego al terapeuta a ajustar mejor las pautas más adecuadas para cada paciente.
+En la figura~\ref{fig:c4:impl6} se puede ver el buscador de pacientes. Si no se rellena ningún campo, se mostrarán todos los pacientes registrados del terapeuta. Si se rellenan los campos, se realizará una consulta con la suma de condiciones de los campos seleccionados. La tabla de pacientes incluye un paginador, igual que en el resto de tablas de la web, que se hace visible cuando la consulta devuelve más registros que el máximo número de páginas por tabla establecido (es decir, quince registros).
 
 \paragraph{}
-Estos datos se enviarán al servidor en formato JSON mediante el protocolo AMQP. Este es un protocolo de comunicación específicamente pensado para dispositivos IOT debido a su bajo consumo de recursos. Esta información estará cifrada usando el protocolo SSL para evitar robos de información sensible del paciente mediante técnicas de \textit{sniffing} o ataques de \textit{Man in the middle}.
+En la figura~\ref{fig:c4:impl7} se puede ver un paciente concreto de la web. Inicialmente, esta página y la página de la figura~\ref{fig:c4:impl8} eran una sola página en la que, mediante un botón con dos posiciones, se podía elegir si los campos eran editables (como en la figura~\ref{fig:c4:impl8}) o no (como en la figura~\ref{fig:c4:impl7}).
 
 \paragraph{}
-Una vez llegan los datos de los posibles episodios y sus correspondientes pautas al servidor de AMQP, estos datos serán desencriptados y se persistirán en una base de datos de Mongo. El servidor contará con dos bases de datos: una base de datos SQLite que únicamente almacenará los credenciales de los terapuetas para acceder a la web y una base de datos de Mongo en el que se almacenará el resto de la información.
+En la figura~\ref{fig:c4:impl8} aparece la pantalla para editar la información de un paciente, que viene precargada con los valores de dicho paciente. Inicialmente se incluía junto con los desplegables de pautas y grupos una tabla con todas las pautas que se fueran seleccionando así como las que se fueran creando específicamente para el paciente en esta misma pantalla. Esta tabla incluía una columna extra para poder desvincular cada pauta de cada fila de la tabla, de la misma manera que se podía y se pueden desvincular las pautas del seleccionable. Como se consideraba que esta opción podía ser confusa para el usuario al incluir demasiada información en una sola pantalla, se decidieron dejar exclusivamente los seleccionables, aunque eso implicase no poder ver en la pantalla de edición de los pacientes las características concretas de las pautas seleccionadas (en la tabla aparecían los niveles de alerta a los que estaban vinculados, mientras que en el seleccionable, esa información no aparece).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/2-verPacientes.png}
+    \caption[Página para ver los pacientes en la versión final de la web]{Página para ver los pacientes en la versión final de la web}
+    \label{fig:c4:impl6}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/3-verPaciente.png}
+    \caption[Página para ver un paciente concreto en la versión final de la web]{Página para ver un paciente concreto en la versión final de la web}
+    \label{fig:c4:impl7}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/4-editarPaciente.png}
+    \caption[Página para editar un paciente concreto en la versión final de la web]{Página para editar un paciente concreto en la versión final de la web}
+    \label{fig:c4:impl8}
+\end{figure}
 
 \paragraph{}
-En la web el terapeuta podrá añadir nuevos pacientes, asociar pautas a pacientes en función de la intensidad de ira que se detecte y ver el histórico de episodios de cada paciente. Así, según las veces que se haya descartado una pauta, la efectividad de la misma o los comentarios de cada paciente, podrá modificar o eliminar la pauta para uno o más pacientes. Esto también sirve para poder comentar con el paciente los distintos episodios de ira que ha sufrido teniendo un registro histórico que pueda servir como referencia para guiar la terapia.
+A la página de la figura~\ref{fig:c4:impl9} se accede a partir de la pantalla de la figura~\ref{fig:c4:impl7} o de la figura~\ref{fig:c4:impl6}, que incluyen enlaces para ver los episodios de los correspondientes pacientes. Esta pantalla varía exclusivamente respecto a la pantalla de la figura~\ref{fig:c4:impl10} en la parte superior de la página, que incluye la información para identificar al paciente del que se están consultando los episodios de ira mientras que en la figura~\ref{fig:c4:impl10}, al ser una pantalla genérica, en su lugar se incluye un seleccionable de los pacientes del terapeuta. A esta última pantalla se accede exclusivamente a través del elemento del menú principal \textit{Ver episodios}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/5-verEpisodios.png}
+    \caption[Página para ver los episodios de un paciente fijo en la versión final de la web]{Página para ver los episodios de un paciente fijo versión en la final de la web}
+    \label{fig:c4:impl9}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/6-verEpisodiosGenerico.png}
+    \caption[Página para ver los episodios de un paciente variable versión en la final de la web]{Página para ver los episodios de un paciente variable en la versión final de la web}
+    \label{fig:c4:impl10}
+\end{figure}
+
+\paragraph{}
+Cuando se selecciona un episodio concreto en las filas de la tabla de las pantallas de las figuras~\ref{fig:c4:impl9} o~\ref{fig:c4:impl10}, se envía por parámetros a la pantalla de la figura~\ref{fig:c4:impl11} el paciente seleccionado y las fechas y horas de inicio y de fin del episodio. Con esta información, se recoge toda la información de ese episodio y se muestra en una gráfica y en una tabla que adicionalmente contiene las pautas sugeridas en cada momento y los comentarios opcionales rellenos por el usuario. Inicalmente, la gráfica que aparece en la figura~\ref{fig:c4:impl11} se incluyó en las pantallas para ver todos los episodios de los pacientes, pero se consideró que, como en el medio plazo un paciente seguramente enviaría bastante información de sus episodios de ira, esta gráfica perdería su interés, mientras que al incluirla en la pantalla de la figura~\ref{fig:c4:impl11}, como contendría significativamente menos información, esta gráfica podría ser útil para ver de manera visual el tiempo que ha permanecido el paciente en cada uno de los estados de la ira.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/7-verUnEpisodio.png}
+    \caption[Página para ver un episodio concreto de un paciente en la versión final de la web]{Página para ver un episodio concreto de un paciente versión en la final de la web}
+    \label{fig:c4:impl11}
+\end{figure}
+
+%%TODO: registrar pauta
+\paragraph{}
+En la figura~\ref{fig:c4:impl12} se puede ver la pantalla para registrar una pauta. En esta misma pantalla se puede también asociar la nueva pauta a pacientes o englobarla dentro de un grupo de pautas.
+
+\paragraph{}
+En la figura~\ref{fig:c4:impl13} se muestra el buscador de pautas. El funcionamiento es idéntico al de la página de la figura~\ref{fig:c4:impl6}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/8-registrarPauta.png}
+    \caption[Página para registrar una pauta en la versión final de la web]{Página para registrar una pauta en la versión final de la web}
+    \label{fig:c4:impl12}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/9-verPautas.png}
+    \caption[Página para ver las pautas en la versión final de la web]{Página para ver las pautas en la versión final de la web}
+    \label{fig:c4:impl13}
+\end{figure}
+
+\paragraph{}
+En la página de la figura~\ref{fig:c4:impl14} se puede ver la información de una pauta. Esta página incluye un enlace para la página de edición de la pauta.
+
+\paragraph{}
+En la página de la figura~\ref{fig:c4:impl15} se muestra el buscador de grupos de pactos, cuyo funcionamiento es idéntico a los buscadores de pacientes y pautas que aparecen las figuras~\ref{fig:c4:impl6} y~\ref{fig:c4:impl13}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/10-verPauta.png}
+    \caption[Página para ver una pauta en la versión final de la web]{Página para ver una pauta en la versión final de la web}
+    \label{fig:c4:impl14}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/11-verGrupos.png}
+    \caption[Página para ver los grupos de pautas en la versión final de la web]{Página para ver los grupos de pautas en la versión final de la web}
+    \label{fig:c4:impl15}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/12-verGrupo.png}
+    \caption[Página para ver un grupo de pautas en la versión final de la web]{Página para ver un grupo de pautas en la versión final de la web}
+    \label{fig:c4:impl16}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=7cm, width=\textwidth]{Imagenes/13-editarGrupo.png}
+    \caption[Página para editar un grupo de pautas en la versión final de la web]{Página para editar un grupo de pautas en la versión final de la web}
+    \label{fig:c4:impl17}
+\end{figure}
+
+\paragraph{}
+En la figura~\ref{fig:c4:impl13} aparece la página para ver la información de un grupo de pautas. Al pulsar sobre el botón \textit{editar paciente}, se redireccionará a la página de la figura~\ref{fig:c4:impl17}, donde se podrá editar la información de dicho paciente.
+
+\subsection{Flujo de datos}
+\paragraph{}
+La pulsera (tercer elemento de la figura~\ref{fig:c4:dfd}) es un dispositivo IOT que obtendrá las sensorizaciones del paciente (primer y segundo elemento de la figura~\ref{fig:c4:dfd}) cada [TODO] segundos. Concretamente, obtendrá los datos de la actividad electrodérmica, y el ritmo cardíaco. Para ello, se ha elegido el modelo [TODO: modelo y descripción del modelo de la pulsera haciendo referencia a la comparación de pulseras del estado del arte].
+
+\paragraph{}
+Estas sensorizaciones se enviarán por \ac{BLE} al dispositivo móvil con sistema operativo Android del paciente (conexión entre el tercer y cuarto elemento de la figura~\ref{fig:c4:dfd}). Este protocolo de comunicación utiliza el sistema de encriptación \ac{AES} (\citep{ble-aes}), lo que dificulta que un atacante que se encuentre dentro del radio de emisión de la pulsera inteligente pueda acceder a los datos sensorizados.
+
+\paragraph{}
+La conexión será gestionada mediante una aplicación Android creada para este proyecto (cuareto elemento de la figura~\ref{fig:c4:dfd}). En esta aplicación, se mostrarán pautas para el nivel de alerta detectado en el paciente (quinto elemento de la figura~\ref{fig:c4:dfd}), o, en caso de que no haya alertas, mensajes de refuerzo positivo.
+
+\paragraph{}
+Al conjunto de alertas que se producen desde el estado de reposo, el o los estados de alerta y la vuelta al estado de reposo se denomina episodio. Los episodios tienen aparejados una serie de pautas que se le recomiendan al paciente durante el episodio, que podrán ser descartadas por el paciente si no se consideran útiles y añadir comentarios que puedan ser después útiles en la consuta. El usuario adicionalmente deberá indicar si ha seguido o no la pauta recomendada (conexiones entre el elemento uno y cuatro de la figura~\ref{fig:c4:dfd}). En tanto en cuanto el paciente no vuelva al estado de reposo, se le deben de seguir mostrando pautas (quinto elemento de la figura~\ref{fig:c4:dfd}).
+
+\paragraph{}
+Estos episodios, creados a partir de los conjunto de pautas, alertas e interacciones del usuario con la aplicación (sexto elemento de la figura~\ref{fig:c4:dfd}), serán almacenados en dos bases de datos: la base de datos local de SQLite (séptimo elemento de la figura~\ref{fig:c4:dfd}) y la base de datos del servidor de MongoDB (octavo elemento de la figura ~\ref{fig:c4:dfd}). Es importante persistir los episodios en la base de datos del móvil para que el paciente también pueda ver en la aplicación su registro histórico de episodios. Los datos se enviarán al servidor mediante el protocolo de comunicación AMQP.
+
+\begin{figure}[H]
+    \centering
+    %width=3cm, height=3cm
+    \includegraphics[height=9cm, width=\textwidth]{Imagenes/dfd-all.png}
+    \caption[Diagrama de flujo de datos de la aplicación]{Diagrama de flujo de datos de la aplicación}
+    \label{fig:c4:dfd}
+\end{figure}
+
+\paragraph{}
+Si el móvil tiene permisos de superusuario y la base de datos no está encriptada, una aplicación maliciosa podría acceder a estos datos de SQLite. Para evitar esto, se encriptará esta base de datos (séptimo elemento de la figura~\ref{fig:c4:dfd}) con el sistema [TODO: ponerlo cuando esté hecho].
+
+\paragraph{}
+Los episodios almacenados en la base de datos del servidor (octavo elemento de la figura~\ref{fig:c4:dfd}) podrán ser luego visualizados en la web (noveno elemento de la figura~\ref{fig:c4:dfd}) por parte del terapeuta (decimoprimer elemento de la figura~\ref{fig:c4:dfd}). El terapeuta podrá añadir nuevos pacientes, modificar las pautas de los pacientes a través de la web, información que luego se persistirá a su vez en la base de datos de los pacientes correspondientes (séptimo elemento de la figura~\ref{fig:c4:dfd}).
+
+\paragraph{}
+Para que un terapeuta pueda acceder a la web, antes tiene que registrarse e iniciar sesión. Los credenciales de los terapeutas se guardan en una base de datos de SQLite (décimo elemento de la figura~\ref{fig:c4:dfd}). Estos credenciales están separados del resto de registros de la web por motivos de ciberseguridad. Así, si se detecta un intento de acceso indebido a la base de datos con los credenciales de los terapeutas, el administrador de la web, podría a bloquear cautelarmente el acceso a la base de datos de MongoDB (octavo elemento de la figura~\ref{fig:c4:dfd}).
