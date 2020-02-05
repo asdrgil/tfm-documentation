@@ -7,22 +7,22 @@
 \chapter{Introducción}
 
 \paragraph{}
-En este capítulo, se va a explicar la motivación de este trabajo (~\ref{sec:motivacion}), los objetivos (~\ref{sec:objetivos}) y la estructura del contenido de esta memoria (~\ref{sec:estructuraMemoria}).
+En este capítulo, se va a explicar la motivación de este trabajo (sección~\ref{sec:motivacion}), los objetivos (sección~\ref{sec:objetivos}) y la estructura del contenido de esta memoria (sección~\ref{sec:estructuraMemoria}).
 
 %-------------------------------------------------------------------
 \section{Motivación}
 \label{sec:motivacion}
 \paragraph{}
-En una consulta clínica en la que se trabaja con personas que presentan problemas diagnosticados por un psicólogo para la gestión de la ira, es importante recapitular los episodios de la vida cotidiana de esta persona en las que el paciente en cuestión ha tenido que gestionar la ira. En esta narrativa, el terapeuta irá realizando una serie de apuntes para luego intentar ayudar al paciente a que, en situaciones venideras, dicha gestión de la ira mejore o siga siendo estable. Este método, aunque se puede complementar con tests de medición de la ira, presenta un problema fundamental que es que no hay manera de ratificar la veracidad de lo que está diciendo el paciente, por lo que, ya sea de manera consciente o inconsciente (incluso se le puede olvidar mencionar algunos de los episodios de ira), puede que el psicólogo acabe dando una serie de pautas al paciente partiendo de unas premisas distintas a las reales. A su vez, las pautas que recibe el paciente para la gestión de la ira puede que no sean útiles, y éste tenga que esperar hasta la siguiente consulta para poder recibir nuevas indicaciones. Por otro lado, la categorización de la utilidad de las pautas suministradas por el terapeuta dependen de la información recibida por el paciente en las consultas, que, como se verá en la sección ~\ref{subsubsec:intervencionPsico}, la información proporcionada por el paciente puede no ser veraz, lo que puede conllevar la realización de un mal diagnóstico del paciente, puesto que el diagnóstico se sustenta en información falaz.
+En una consulta clínica en la que se trabaja con personas que presentan problemas diagnosticados por un psicólogo para la gestión de la ira, es importante recapitular los episodios de la vida cotidiana de esta persona en las que el paciente en cuestión ha tenido que gestionar la ira. En esta narrativa, el terapeuta irá realizando una serie de apuntes para luego intentar ayudar al paciente a que, en situaciones venideras, dicha gestión de la ira mejore o siga siendo estable. Este método, aunque se puede complementar con tests de medición de la ira, presenta un problema fundamental que es que no hay manera de ratificar la veracidad de lo que está diciendo el paciente, por lo que, ya sea de manera consciente o inconsciente (incluso se le puede olvidar mencionar algunos de los episodios de ira), puede que el psicólogo acabe dando una serie de pautas al paciente partiendo de unas premisas distintas a las reales. A su vez, las pautas que recibe el paciente para la gestión de la ira puede que no sean útiles, y éste tendrá que esperar hasta la siguiente consulta para poder recibir nuevas pautas. Por otro lado, la categorización de la utilidad de las pautas suministradas por el terapeuta dependen de la información dada por el paciente, que, como se verá en la sección ~\ref{subsubsec:intervencionPsico}, puede no ser una información veraz, lo que puede conllevar la realización de un mal diagnóstico del paciente, puesto que el diagnóstico se sustenta en información errónea.
 
 \paragraph{}
 En este trabajo fin de máster, se ha diseñado una solución tecnológica que permite discretizar los episodios de ira del paciente mediante la medición de varias de sus constantes fisiológicas con una pulsera inteligente no intrusiva (para no interferir en el estilo de vida del paciente). Esto permitiría a los te-\\rapeutas tener una visión más objetiva de dichos episodios. Por otra parte, esta solución tecnológica identifica las pautas que más ayudan al paciente para mostrarle en episodios venideros más adecuada en cada momento.
 
 \paragraph{}
-De esta manera, se tendría un registro preciso de los episodios de ira que ha experimentado el paciente cruzados con las pautas que le han podido ser más útiles así como la fecha y hora concreta del inicio y fin de los episodios. Esto reduce significativamente la dependencia en la versión del paciente, pudiendo de esta manera reconducir la terapia hacia los episodios más significativos recogidos en la aplicación, que en el caso de no llevar la pulsera inteligente el paciente pudiera no recordar.
+De esta manera, se tendría un registro preciso de los episodios de ira que ha experimentado el paciente junto con información sobre las pautas que le han sido útiles. Esto reduce significativamente la dependencia en la versión del paciente, pudiendo de esta manera reconducir la terapia hacia los episodios más significativos recogidos en la aplicación, que en el caso de no llevar la pulsera inteligente el paciente pudiera no recordar.
 
 \paragraph{}
-Por otro lado, un factor crucial de la aplicación es la fiabilidad en la medición de estos episodios de ira. Los falsos positivos que podría detectar la aplicación serán detectados en la propia consulta, hablando con el paciente o revisando los comentarios que pueda haber suministrado el paciente a través de la aplicación en el momento en el que se detectó el falso positivo. Esto es así porque cada vez que se le presente al paciente una pauta, este podrá opcionalmente dar información (por escrito o por voz)sobre la utilidad de la pauta proporcionada por la aplicación, lo que permite que en la propia consulta se parta no sólo de la información cuantitativa recogida a través de las constantes fisiológicas, sino también de la información cualitativa provista opcionalmente por el paciente.
+Por otro lado, un factor crucial de la aplicación es la fiabilidad en la medición de estos episodios de ira. Los falsos positivos que podría detectar la aplicación serán detectados en la propia consulta, hablando con el paciente o revisando los comentarios que podrá suministrar el paciente a través de la aplicación en el momento en el que se detectó el falso positivo. Para lograr esto, cada vez que se le presente al paciente una pauta, este tendrá la oportunidad de informar sobre la utilidad de la pauta proporcionada por la aplicación, lo que permite que en la propia consulta se parta no sólo de la información cuantitativa recogida a través de las constantes fisiológicas, sino también de la información cualitativa proporcionada por el paciente.
 
 %-------------------------------------------------------------------
 
@@ -30,32 +30,33 @@ Por otro lado, un factor crucial de la aplicación es la fiabilidad en la medici
 \label{sec:objetivos}
 
 \paragraph{}
-Los objetivos primarios de este trabajo son los siguientes:
+Los objetivos principales de este trabajo son los siguientes:
 \begin{enumerate}
-    \item Creación de dos aplicaciones: una aplicación Android dirigida a los pacientes, en el que se monitorizarán las constantes fisiológicas del paciente y se le recomendarán pautas para reducir su nivel de ira y una aplicación web para los terapeutas, en el que poder acceder al registro de episodios de ira de sus pacientes y poder crear y asignar nuevas pautas para sus pacientes.
+    \item Recoger los datos de las constantes fisiológicas del paciente mediante una pulser inteligente.
+    \item Creación de una aplicación Android dirigida a los pacientes, en el que se se avisará al paciente de los episodios de ira que está sufriendo y se le recomendarán las pautas prescritas por el terapeuta según el nivel de ira para reducir su nivel de ira.
+    \item Creación de una aplicación web para los terapeutas, en la que poder acceder al registro de episodios de ira de sus pacientes y poder asignar pautas para sus pacientes.
     \item La aplicación web, la aplicación Android y la elección de la pulsera inteligente para medir las constantes fisiológicas deben regirse por el principio de diseño orientado al usuario para que la solución final provean a todas las partes de la mejor experiencia de usuario posible.
-    \item Lectura de manera continuada de las mediciones de las constantes fi-\\siológicas de la pulsera inteligente por parte de la aplicación de Android.
-    \item Almacenamiento en el dispositivo móvil de los registros de las mediciones y detectar si estas se corresponden con episodios de ira.
-    \item Cuando se detecte un episodio de ira, La aplicación de Android deberá mostrar pautas para reducir el nivel de ira.
     \item Al mostrar una pauta, la aplicación de Android deberá permitir al paciente introducir comentarios para poder después revisarlos en la consulta y poder discernir falsos positivos y pautas que no han sido útiles.
     \item La aplicación de Android deberá conectarse de manera intermitente con la aplicación web para por un lado, poder almacenar en la base de datos de la web la información relativa a los episodios de ira y, por otro, que la terapeuta pueda enviar al paciente el conjunto de pautas que le aparecerán en la aplicación móvil cuando se detecten episodios de ira.
-    \item La aplicación web deberá permitir la autenticación de varios terapeutas con registros de pautas y pacientes independientes entre sí.
-    \item Desde la aplicación web, se podrá visualizar los episodios de ira de cada paciente, incluyendo no sólo un histograma con el nivel de ira en cada momento sino también las pautas recomendadas y los posibles comentarios del paciente en cada nivel de ira.
-    \item En la aplicación web se podrán asociar y disociar pautas para los distintos pacientes, pudiendo crear y reutilizar grupos de pautas para pacientes con cuadros clínicos similares.
-\end{enumerate}
-
-Los dos objetivos principales de este trabajo son que la aplicación que se cree pueda dar información más precisa tanto al terapeuta como al paciente de los episodios de ira acaecidos y, por otro lado, dar información en tiempo real al paciente que le puedan servir para reducir su nivel de ira.
-
-\paragraph{}
-Los objetivos secundarios derivados de los dos objetivos principales son los siguientes:
-\begin{enumerate}
-    \item Utilización de elementos tecnológicos no intrusivos para que la discretiza-\\ción de los episodios de ira del paciente no supongan un estigma ni sean incómodos en términos fisiológicos.
+    \item Utilización de elementos tecnológicos no intrusivos para que la discretización de los episodios de ira del paciente no supongan un estigma ni sean incómodos en términos fisiológicos.
     \item Intentar incrementar lo máximo posible la pendiente de la curva de aprendizaje para evitar, entre otras cosas, que los elementos tecnológicos en sí acaben siendo motivos del aumento de la frustración e ira.
     \item Adecuación del consumo energético de los dispositivos electrónicos al uso cotidiano. Esto es, no es factible requerir al usuario que cargue el dispositivo móvil o la pulsera inteligente cada 20 minutos por un uso intensivo de energía en la solución tecnológica.
-    \item Garantizar el derecho a la intimidad del paciente mediante la encriptación de todos los datos relativos a las mediciones fisiológicas. Esto incluye la encriptación en las bases de datos, la encriptación en las comunicaciones entre la pulsera y el dispotivo móvil y entre el dispositivo móvil y la página web.
+    \item Garantizar el derecho a la intimidad del paciente mediante la encriptación de todos los datos relativos a las mediciones fisiológicas.
 \end{enumerate}
 
 \section{Estructura de la memoria}
 \label{sec:estructuraMemoria}
 \paragraph{}
-[TODO: esto queda postergado hasta que esté terminada la primera versión de toda la memoria.]
+Esta memoria consta de [TODO] capítulos, cuyo contenido no pretende ser independiente entre sí sino acumulativo: a medida que avancen los capítulos, se irán referenciando ideas previamente desarrolladas para que, a partir del desarrollo genérico de soluciones tecnológicas de IOT, se desemboque en la comprensión de la solución desarrollada en este trabajo.
+
+\paragraph{}
+En el primer capítulo, se desarrolla el problema que se iba a abordar y los objetivos que en un primer momento se establecieron para poder solucionarlo de manera óptima teniendo en cuenta la disponibilidad de recursos materiales y temporales de los agentes involucrados.
+
+\paragraph{}
+En el segundo capítulo, se desarrolla el estado del arte del problema que se quiere resolver. Como este problema intersecciona tanto con la psicología como con la informática, se encontrarán dos secciones claramente diferenciadas entre sí abordando ambos temas. Cabe destacar una sección que incluye una comparativa de quince soluciones tecnológicas para medir distintas emociones a partir de su fisiología. Esta información servirá posteriormente para poder comparar la fiabilidad de la solución implementada en relación a trabajos previos.
+
+\paragraph{}
+En el tercer capítulo, se muestran las distintas herramientas tecnológicas que se han considerado utilizar en este trabajo. Esto incluye las bases de datos, los protocolos de comunicación y los protocolos de ciberseguridad.
+
+\paragraph{}
+En el cuarto capítulo, se encuentra el diseño y la implementación del termómetro de la ira. En la primera parte se incluyen las iteracciones realizadas con la persona experta para capturar requisitos y desarrollar el diseño de la aplicación web y de la aplicación Android. En la segunda parte, se incluye la implementación final de la solución.

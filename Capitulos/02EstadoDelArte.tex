@@ -7,7 +7,10 @@
 \chapter{Estado del arte}
 
 \paragraph{}
-En este capítulo, se pretende desglosar el estado actual así como parte de la historia que ha llevado a dicha actualidad de aquellos aspectos de la psicología (~\ref{cap1:sec:Emociones}) y la informática (~\ref{sec:iot}) que afectan de manera transversal a este trabajo. Para ello, se van a detallar los principales hallazgos tanto en psicología como en informática en lo que respecta a las emociones y su medición. Se va a comenzar con una introducción a las distintas teorías psicológicas que han pretendido acotar las emociones (~\ref{subsec:teorEmoc}), así como los métodos desarrollados para la medición de las mismas en los humanos sin mediciones fisiológicas (~\ref{subsubsec:medicionIra1}), como son los cuestionarios. Tras esto, se van a explorar los métodos para la intervención con pacientes con ira disfuncional (~\ref{subsubsec:intervencionPsico}). La parte que concierne a los aspectos psicológicos de esta sección finaliza con la fisiología de la ira (~\ref{subsubsec:fisioIra}), la revisión de los trabajos para su medición (~\ref{subsubsection:medirEmocFisio}) y la suscripción al código deontológico del Consejo General de Colegios Oficiales de Psicólogos de España (~\ref{section:codDeonto}). En lo que respecta a la parte informática, esta sección incluye un breve repaso de las aplicaciones de Internet de las Cosas (~\ref{subsec:accIntelig}) así como una comparativa entre distintas pulseras inteligentes que se barajaban para la realización de este trabajo (~\ref{subsubsec:pulserasInteligentes}) con la correspondiente explicación de la elección final de la pulsera inteligente que se ha utilizado (~\ref{subsubsec:comparativaPulseras}).
+En este capítulo, se va a repasar el estado actual de aquellos aspectos de la psicología (sección~\ref{cap1:sec:Emociones}) y la informática (sección~\ref{sec:iot}) relacionados con este trabajo. En el caso de la psicología, se va a comenzar con una introducción a las distintas teorías psicológicas que han pretendido acotar las emociones (sección~\ref{subsec:teorEmoc}), así como los métodos desarrollados para la medición de las mismas en los humanos sin mediciones fisiológicas (sección~\ref{subsubsec:medicionIra1}), como son los cuestionarios. Tras esto, se van a explorar los métodos para la intervención con pacientes con ira disfuncional (sección~\ref{subsubsec:intervencionPsico}). La parte que concierne a los aspectos psicológicos de esta sección finaliza con la fisiología de la ira (sección~\ref{subsubsec:fisioIra}), lo que permitirá su medición mediante una pulsera inteligente. Para aprovechar el trabajo ya realizado en este ámbito, se realizará una revisión de la medición de la ira (~\ref{subsubsection:medirEmocFisio}). Como este trabajo incluye la realización de experimentos con seres humanos, se concluirá la sección psicológica con la suscripción al código deontológico del Consejo General de Colegios Oficiales de Psicólogos de España (sección~\ref{section:codDeonto}).
+
+\paragraph{}
+En lo que respecta a la parte informática, se realizará un breve repaso de las aplicaciones de Internet de las Cosas (sección~\ref{subsec:accIntelig}) así como una comparativa entre distintas pulseras inteligentes que se barajaron para la realización de este trabajo (sección~\ref{subsubsec:pulserasInteligentes}) con la correspondiente explicación de la elección final de la pulsera inteligente que se ha utilizado (sección~\ref{subsubsec:comparativaPulseras}).
 
 %-------------------------------------------------------------------
 \section{Emociones}
@@ -513,7 +516,61 @@ Tras analizar las soluciones presentadas, se puede ver que los dispositivos más
 Entre los clasificadores utilizados, se puede observar un claro predominio de SVM, bien como clasificador único, bien como parte de una cadena de clasificadores, como puede ser QDA o RNA. La precisión que se obtiene con este clasificador varía entre las soluciones entre el 62 y el 95\%. En la comparativa entre las soluciones que intentan medir un conjunto concreto de emociones frente a aquellas soluciones que pretenden medir todas ellas mediante la valencia, se puede observar que no existen diferencias significativas en las precisiones alcanzadas. Por otro lado, la precisión conseguida en cada una de estas pruebas debe ser analizada con cautela, pues entre ellas hay una gran variación entre las tareas a realizar durante el experimento, la medición objetivo y los métodos de evaluación, por lo que sería incorrecto evaluar de manera aislada cada una de las variables de los distintos experimentos, al no permanecer constantes el resto de ellas. Por ejemplo, la precisión alcanzada en cualquiera de estos experimentos puede variar entre aquellos que intentan inducir una emoción al paciente y contrastan esta (que se establece como variable fija) con la emoción detectada en el experimento con aquellos casos que esta evaluación se realiza respecto a una escala de Likert rellenada por el paciente, pues no existe una correspondencia perfecta entre la autopercepción de una emoción pasada que aquella que se experimentó en aquel momento.
 
 %-------------------------------------------------------------------
+\section{Diseño orientado al usuario}
+\paragraph{}
+El diseño centrado en el usuario hace referencia al enfoque de diseño multidisciplinar basado en involucrar de manera activa al usuario en el proceso de diseño y/o evaluación de un producto para tener un conocimiento claro sobre los requisitos funcionales y no funcionales que debe tener la solución final. Este enfoque se considera que es fundamental para que el producto sea útil y usable\citep{mao2001user}.
 
+\paragraph{}
+Este término se popularizó tras la publicación del libro \textit{User-Centered System Design: New Perspectives on Human Computer Interaction} (\citeyear{norman1986user}). Más tarde, Norman desarrolló siete principios fundamentales del trabajo de diseño para facilitar dicho trabajo\citep{norman2013design}:
+\begin{enumerate}
+    \item Hacer uso del conocimiento previo que tenga el usuario. Por ejemplo, en un contexto de uso extensivo de teléfonos inteligentes, el triángulo cónico que se suele usar para indicar la señal del WiFi puede usarse en una aplicación para este mismo fin sin necesidad de complementarlo con frases que refuercen su explicación.
+    \item Simplificar la estructura de las tareas para no saturar ni la memoria a corto plazo ni la memoria a largo plazo del usuario.
+    \item La implementación debe de ser intuitiva partiendo de un vistazo rápida a la misma. Es decir, a partir de únicamente la visualización de la interfaz, el usuario debe de poder deducir la funcionalidad de cada elemento.
+    \item Debe de haber un correcto mapeo entre las funcionalidades y los objetos. Un ejemplo de mapeo ineficiente sería el de una serie de varios interruptores de luces en el que antes de pulsarlos el usuario no supiese qué bombilla se encenderá a continuación.
+    \item Convertir las limitaciones en ventajas para que el usuario tenga la sensación de que solo hay un camino que pueda tomar.
+    \item Los errores en las aplicaciones deben estar contemplados. Esto implica por ejemplo, que en una página web, se diseñen páginas o notificaciones para errores comunes como el error de HTML 404 o 500 para que así la aplicación transmita mayor sensación de robustez.
+    \item Cuando todo lo anterior falle: estandarizar la solución. Así, en las fases incipientes de una nueva tecnología, puede darse el caso de que algunos elementos sean desconocidos para el usuario (como sucedió con la aparición de los primeros teléfonos inteligentes). En este caso, a través de la estandarización de los nuevos elementos, estos por hábito acabarán siéndole familiar al usuario.
+\end{enumerate}
+
+\paragraph{}
+En la tabla~\ref{fig:dou}, se pueden encontrar las principales diferencias entre el diseño orientado al usuario y los enfoques tradicionales. Como se puede comprobar, en el enfoque tradicional, prevalece el enfoque centrado en la tecnología a la que el usuario se tiene que adaptar mientras que en el diseño orientado al usuario se pretende lo contrario: a partir de las necesidades del usuario, se buscan las tecnologías que mejor puedan suplir sus necesidades.
+
+\begin{table}[]
+\caption{Comparativa entre el enfoque tradicional de diseño y el diseño orientado al usuario}
+\label{fig:dou}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Enfoque tradicional}                                                                               & \textbf{Diseño orientado al usuario}                                                                              \\ \hline
+\begin{tabular}[c]{@{}c@{}}La tecnología establece\\ el diseño\end{tabular}                                & \begin{tabular}[c]{@{}c@{}}El usuario establece\\ el diseño\end{tabular}                                          \\ \hline
+\begin{tabular}[c]{@{}c@{}}Está centrado en\\ los componentes tecnológicos\end{tabular}                    & \begin{tabular}[c]{@{}c@{}}Está centrado en las soluciones\\ tecnológicas\end{tabular}                            \\ \hline
+\begin{tabular}[c]{@{}c@{}}Cooperación multidisciplinar\\ limitada\end{tabular}                            & \begin{tabular}[c]{@{}c@{}}Trabajo en equipo\\ multidisciplinar\end{tabular}                                      \\ \hline
+\begin{tabular}[c]{@{}c@{}}No hay especialización en la\\ experiencia de usuario\end{tabular}              & \begin{tabular}[c]{@{}c@{}}Especialización en la\\ experiencia de usuario\end{tabular}                            \\ \hline
+\begin{tabular}[c]{@{}c@{}}El desarrollo se realiza\\ \\ antes de la validación\\ del usuario\end{tabular} & \begin{tabular}[c]{@{}c@{}}El desarrollo no se realiza\\ hasta la validación\\ del usuario\end{tabular}           \\ \hline
+Se centra en los clientes actuales                                                                         & \begin{tabular}[c]{@{}c@{}}Se centra tanto en los\\ clientes actuales como en los\\ futuros clientes\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+%\paragraph{}
+%Antes de involucrar al usuario en el proceso, es necesario su correcta identificación, pues esta determina la manera en la que podrá ser parte del diseño. Eason (\citeyear{eason1989information}) identifica tres tipos de usuarios: usuarios primarios, que son los que tradicionalmente se llaman usuarios finales, son los que utilizarán la aplicación; usuarios secundarios, serán aquellos que utilicen la aplicación de manera puntual o únicamente a través de un intermediario (por ejemplo, en una aplicación enfocada exclusivamente para alumnos, los profesores podrán hacer uso puntual de la misma para poder resolver dudas a un alumno) y usuarios terciarios, que son 
+
+\paragraph{}
+En cuanto a las formas de involucrar a los usuarios en el proceso de diseño, Preece (\citeyear{rogers2011interaction}) sugiere las siguientes opciones:
+\begin{itemize}
+    \item Entrevistas sobre el entorno del usuario y cuestionarios: con este método se intentarían capturar las necesidades y expectativas de los usuarios. También se podría utilizar para la evaluación de la aplicación.
+    \item Entrevistas sobre los flujos de trabajo y cuestionarios: en esta entrevista, se desea obtener información sobre las secuencias de acciones que tiene que realizar el usuario para realizar una tarea en la aplicación (por ejemplo, rellenar un formulario para registrar a un nuevo usuario, pulsar aceptar y validar el correo electrónico vinculado a dicho usuario).
+    \item Grupos de discusión: en lugar de interpelar directamente al usuario final de manera directa, se reune a un grupo variado de usuarios finales para que discutan entre ellos sobre distintos elementos de la aplicación final.
+    \item Observación \textit{in situ}: consiste en recoger información sobre el entorno en el que se va a utilizar la aplicación. Por ejemplo, si se observa que el usuario final va a utilizar una aplicación móvil en una fábrica muy ruidosa, cuando se necesite trasladar información de manera urgente al usuario que pueda tener el teléfono móvil en el bolsillo, puede que sea necesario incluir la vibración para avisarle de que debe revisar la información que se acaba de enviar a su dispositivo.
+    \item Juegos de rol, tutoriales y simulaciones: este punto incluye la creación de prototipados o simplificaciones de la solución final con el objetivo de detectar en etapas tempranas del desarrollo los posibles fallos que pueda tener la aplicación final.
+    \item Tests de usabilidad: en las etapas finales del desarrollo, se puede observar y grabar las acciones que realiza un paciente con la aplicación para detectar aquellos puntos en los que existan digresiones entre los resultados esperados por el usuario y los resultados reales o en los que el usuario no tenga claro las acciones que realiza cada elemento. Esto podría suceder por ejemplo si no se siguiesen los siete principios de Norman (\citeyear{norman1986user}) desarrollados anteriormente y se utilizasen iconos que no siguiesen los estándares del resto de la comunidad tecnológica.
+\end{itemize}
+
+\paragraph{}
+Entre las distintas técnicas utilizadas para el diseño orientado al usuario, existe un predominio de métodos informales menos estructurados por encima de métodos formales más estructurados \citep{hudson2000user}. En otro estudio que incluía cien sujetos que utilizaban técnicas de usabilidad, el 39\% de los encuestados incluyeron entre las técnicas más utiles los tests de usabilidad, seguido por el prototipado (19\%) y la evaluación heurística (10\%) \citep{gunther2001ucd}.
+
+\paragraph{}
+Con todo ello, una conclusión que se puede sacar de este enfoque es que requiere de una mayor inversión temporal por parte de los desarrolladores pero, por otro lado, puede ayudar a mejorar la experiencia de usuario al relacionarse con la solución tecnológica.
+
+%-------------------------------------------------------------------
 \section{Internet de las cosas}
 \label{sec:iot}
 \paragraph{}
@@ -737,7 +794,7 @@ Respecto a las otras opciones comparadas, Jawbone UP 24 no está diseñada para 
 \section{Código deontológico}
 \label{section:codDeonto}
 
-\subparagraph{}
+\paragraph{}
 Puesto que en este proyecto se va a realizar una evaluación con seres humanos, es necesario conocer el código deontológico utilizado en psicología con el fin de evitar malas prácticas. Para este proyecto, se ha seguido el código deontológico utilizado por el Consejo General de Colegios Oficiales de Psicólogos de España en su versión aprobada el 6 de marzo de 2010 (a pesar de realizar este trabajo como informático y por tanto no estar regido por dicho código deontológico, se considera imprescindible asumir de propia iniciativa dicho código deontológico). Los principales postulados que afectan directamente a la investigación de este proyecto son los siguientes:
 \begin{itemize}
     \item Finalidad humana y social de la psicología.
