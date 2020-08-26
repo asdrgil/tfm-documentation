@@ -1,0 +1,49 @@
+%---------------------------------------------------------------------
+%
+%                          Capítulo 5 - Conclusiones y trabajo futuro
+%
+%---------------------------------------------------------------------
+
+\section{Conclusiones y trabajo futuro}
+\paragraph{}
+En esta sección se encuentran las conclusiones y trabajo futuro tras realizar este proyecto. Como se verá, la mayor parte de ellas han sido comentadas a lo largo del trabajo pero también se encuentran otras conclusiones y posibles vías futuras que al ser más genéricas se desglosan en esta sección por primera vez.
+
+\subsection{Conclusiones}
+\paragraph{}
+Este ha sido un trabajo multidisciplinar a medio camino entre la informática y la psicología que intentaba resolver un problema real, lo que ha conllevado una investigación en el ámbito de la concepción de las emociones en la psicología que queda ampliamente reflejada en la sección del estado del arte.
+
+\paragraph{}
+En concreto, se partía del problema de que los pacientes con dificultades para la de gestión de la ira no contaban con asistencia en tiempo real para reducir su nivel de ira, teniendo que esperar hasta la siguiente consulta con su terapeuta para recibir asistencia. A su vez, debido a la deseabilidad social los episodios de ira atravesados por el paciente no siempre son reportados al terapeuta. Este problema sí ha sido resuelto en tanto en cuanto la arquitectura tecnológica permite que cuando se detecte un episodio de ira este sea registrado, enviado al terapeuta y se den indicaciones al paciente para poder gestionar el episodio de ira. Ahora bien, el objetivo que se estableció inicialmente en la sección \ref{sec:objetivos}, \textit{recoger los datos de las constantes fisiológicas del paciente mediante una pulsera inteligente}, ha sido cumplido de manera parcial, ya que como se ha comentado en el apartado~\ref{c4:sec:impl}, el ritmo cardíaco ha sido simulado en la aplicación Android mediante números aleatorios.
+
+\paragraph{}
+Otro elemento a mejorar es la estabilidad de la conexión BLE entre el dispositivo móvil y el anillo, puesto que esta es bastante inestable. Ahora bien, esto no se debe a un código poco depurado, ya que esta parte es una adaptación prácticamente idéntica a la que Moodmetric, el creador del anillo utilizado, tiene colgado en su página web. Revisando aplicaciones comerciales con pulseras que ya están en el mercado, se pudo ver que incluso las pulseras comerciales de Samsung, como por ejemplo Samsung Galaxy Fit e, requerían que el usuario instalase en torno a cuatro aplicaciones adicionales para poder estabilizar la conexión BLE, con el coste en recursos energéticos y de memoria que esto supone. A su vez, en la propia aplicación comercial de Moodmetric se comprobó la inestabilidad de la conexión BLE, que cada poco tiempo era necesario reconectarse.
+
+\paragraph{}
+Otra limitación externa es el diseño del anillo de Moodmetric. Mientras que la pulsera de Hexiwear es muy cómoda y se puede llevar puesta sin causar fricciones o rozaduras, el anillo de Moodmetric tiene el gran problema de que al ser metálico y de un tamaño fijo, no solo no es válido para todos los tamaños de manos, sino que se durante su uso se vio que era bastante frecuente que se quedase atascado en el dedo o que, si se introducía en un dedo más pequeño (por ejemplo, el meñique) el anillo directamente se cayese. En esta línea, hubiese sido mucho más práctico que el anillo fuese de otro material menos rígido (por ejemplo, de un plástico blando) o que permitiese ajustarlo en varias extensiones, como sucede con un reloj.
+
+\paragraph{}
+Respecto a la curva de aprendizaje de la web y la aplicación Android, tras haber realizado tres iteraciones se considera que se ha realizado un diseño orientado al usuario con unas soluciones tecnológicas bastante intuitivas. Las únicas limitaciones en este aspecto son que, como debido a la falta de tiempo no se han realizado pruebas con usuarios finales de la aplicación móvil, los motivos de la ira han sido seleccionados por el programador en lugar de por la persona experta, al igual que ha sucedido con las pautas. Adicionalmente, inicialmente se tanteó la opción de que los textos de la aplicación Android fueran de lectura fácil para que la pudiese utilizar personas con discapacidad intelectual, pero tal como nos comentó la experta, para que esto fuese posible, habría que pasar los textos a una institución especializada en este tema y realizar un desembolso económico. Para paliar un poco esta limitación, en la aplicación Android como se verá prácticamente no hay texto y en todos los casos en los que ha sido posible, existe iconos y/o indicadores visuales adicionales para facilitar la comprensión de la pantalla.
+
+\paragraph{}
+Para medir la fiabilidad del termómetro de la ira se podría inducir la ira mediante algún experimento, pasar un test de la ira al usuario (descritos en la sección~\ref{cap1:estadoArte}) y comparar el nivel de ira percibido en los tests con el nivel de ira detectado por la aplicación. A su vez, se podría hacer una aplicación de prueba que, una vez calibrada la aplicación, detectase los episodios de ira y en lugar de mostrarle al usuario las pautas a seguir, le preguntase al usuario si está sufriendo un episodio de ira y en qué grado de ira percibe que se encuentre. Estos experimentos no se han realizado porque se parte de la base de que una de las variables ha sido simulada con un número aleatorio, por lo que a partir de ese momento no tiene sentido ahondar en la fiabilidad de las mediciones.
+
+\paragraph{}
+Existe un problema adicional con este trabajo y es que se puede realizar un mal uso de la tecnología: en lugar de medir el nivel de ira de un paciente, se podría utilizar para obligar a un empleado que trabaja de cara al público a utilizar esta pulsera para poder controlar y fiscalizar su manera de interactuar con los clientes. Como este ejemplo pueden surgir muchos otros, ahora bien, en este caso, la solución es un prototipo, pero aunque fuese una solución plenamente funcional, el mal uso de dicha tecnología en ningún caso recaería sobre los desarrolladores, que bajo ningún concepto han realizado la implementación pensando en dichos fines, sino que la responsabilidad sería de aquel que utiliza la solución tecnológica para fines no previstos.
+
+\paragraph{}
+Teniendo en cuenta todo lo expuesto, se puede entender este trabajo como un prototipo para incrementar la efectividad del tratamiento de la ira por parte de un profesional. Es importante entender esta solución tecnológica como un complemento a la terapia; en ningún momento se pretende sustituir el trabajo del profesional.
+
+\subsection{Trabajo futuro}
+
+\paragraph{}
+Partiendo de las limitaciones comentandas en en la sección previa, las líneas de trabajo por las que se podría extender este trabajo son las siguientes:
+\begin{enumerate}
+    \item Incluir en el equipo de trabajo a una persona experta en fisiología humana, concretamente entre la causalidad entre la fisiología y las emociones. En la mayoría de trabajos que se han consultado no contaban con dicho experto y eran los propios tecnólogos quienes a partir de la lectura de un par de artículos, determinaban la correlación entre las constantes fisiológicas y las emociones. Esto explica que a la hora de comprobar la bibliografía que apoyaba sus afirmaciones, se encontrasen interpretaciones capciosas que no apoyasen de manera fiel lo que se defendía en el trabajo en sí. En el caso de este trabajo, por muy extensa que sea la bibliograf
+   ía que queda reflejada en el estado del arte de este trabajo, realmente no somos expertos en esta materia, en el que hay un debate abierto respecto a las constantes fisiológicas que determinan de manera apropiada el nivel de ira, por lo que la incorporación de una persona experta que pudiese asesorar en este campo sería ideal para poder centrarse en el desarrollo tecnológico asegurando que el resultado final pueda tener el necesario respaldo científico.
+   \item En línea con el punto anterior, sería necesario refinar el algoritmo de detección de episodios en función de las constantes fisiológicas con una justificación científica del mismo que goce de la solidez que requeriría este trabajo.
+   \item La conexión BLE es inestable y sería necesario estabilizarla. La solución que propone Moodmetric es insuficiente, mientras que la solución de Samsung supone una carga demasiado grande para los recursos de un dispositivo móvil, por lo que sería necesario profundizar la investigación sobre la tecnología BLE para encontrar una tercera alternativa.
+   \item Por falta de tiempo, no se ha conseguido acceder a las constantes fisiológicas del pulso en Hexiwear. Por tanto, sería necesario acceder a dicho valor mediante la conexión BLE a la pulsera.
+   \item Realizar pruebas con pacientes para por un lado ver la utilidad de la aplicación en sí y por otro el grado de fiabilidad de las mediciones del termómetro de la ira.
+   \item Hacer un contrato con una institución especializada en la conversión de textos en lectura fácil para los textos que aparecen en la aplicación web.
+   \item Discernir los episodios de ira en movimiento de los episodios en los que se realiza ejercicio físico. Para este fin, probablemente sería necesario incluir una constante fisiológica nueva que discrimine ambos escenarios. El trabajo en este punto incluiría determinar si esta hipótesis es cierta y, en ese caso, qué constante o constantes fisiológicas deberían añadirse.
+\end{enumerate}

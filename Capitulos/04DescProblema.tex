@@ -1,6 +1,6 @@
 %---------------------------------------------------------------------
 %
-%                          Capítulo 4 - Termómetro de la ira
+%                          Capítulo 4 - Descripción del problema
 %
 %---------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ Para la captura de requisitos, se han realizado dos reuniones con la terapeuta e
     \item Se emparejará la pulsera con el paciente en la propia consulta tras introducir en la aplicación móvil el código que le aparezca al terapeuta en la página web.
     \item Se calibrará el dispositivo con cada paciente para obtener los margenes de las constantes vitales de cada paciente a partir de los cuales se podrá detectar los episodios de ira partiendo de los estados de reposo (durante el sueño) y de máxima actividad cardíaca (al realizar ejercicio físico intenso).
     \item La aplicación móvil para el paciente debe ser muy visual y con una curva de aprendizaje poco elevada, lo que implicará limitar el rango de acciones disponibles para el usuario.
-    \item Cuando se detecte que el paciente pueda estar sufriendo ira, en el móvil del paciente, deberán aparecerle pautas que le ayuden a gestionar dicha ira hasta que se detecte que el episodio ha terminado (el paciente ha vuelto a un estado de calma).
+    \item Cuando se detecte que el paciente pueda estar sufriendo ira, en el móvil del paciente deberán aparecerle pautas que le ayuden a gestionar dicha ira hasta que se detecte que el episodio ha terminado (el paciente ha vuelto a un estado de calma).
     \item El paciente podrá descartar pautas y emitir comentarios sobre las mismas para así poder determinar las pautas que le son útiles a cada paciente.
     \item Se registrará el uso y desuso de las pautas para cada paciente, pudiendo el terapeuta modificarlas convenientemente si viese que estas no están siendo útiles.
     \item Todos los episodios de ira del paciente serán registrados para su posterior revisión por parte del terapeuta y del propio paciente.
@@ -444,29 +444,257 @@ Tras la reunión con la terapeuta, los puntos que se sacaron en claro fueron los
 
 \subsection{Tercera iteración}
 \paragraph{}
-En esta iteracción, las pantallas ya no eran elementos estáticos que se mostraban a la experta sino que incluían la parte de programación necesaria del backend y de transiciones entre pantallas para poder ver la manera en la que se gestionan los datos. Las herramientas que se usaron para hacer los mockups de la web y de Android, igual que en la iteración anterior, son las que se utilizaron para la implementación final. Adicionalmente, en el caso de los mockups de la web, estos se hicieron usando el \textit{framework} de estilos CSS Bulma (\citep{responsivelearning}), utilizando macros genéricos entre las pantallas para estandarizar el formato entre ellas.
+En esta iteracción, las pantallas ya no eran elementos estáticos que se mostraban a la experta sino que incluían la parte de programación necesaria del backend y de transiciones entre pantallas para poder ver la manera en la que se gestionan los datos. Las herramientas que se usaron para hacer los mockups de la web y de Android, igual que en la iteración anterior, son las que se utilizaron para la implementación final. Adicionalmente, en el caso de los mockups de la web, estos se hicieron usando el \textit{framework} de estilos CSS Bulma \citep{responsivelearning}, utilizando macros genéricos entre las pantallas para estandarizar el formato entre ellas.
 
 \paragraph{}
 A diferencia de lo que ocurría en la segunda iteración, se han definido todas las pantallas, incluidas las que estaban cerradas desde la primera versión, para que así se pudiese valorar el mockup en su conjunto (incluyendo transiciones entre pantallas) en lugar de hacerlo con separaciones bruscas entre las valoraciones de cada pantalla.
 
 \subsubsection{Diseño de la aplicación móvil de los pacientes}
-[TODO]
+\paragraph{}
+\paragraph{}
+Las pantallas de esta segunda fase de diseño de la aplicación móvil son las siguientes:
 
-\subsection{Diseño de la aplicación web del terapeuta}
+\begin{itemize}
+    \item En la pantalla de la figura~\ref{c4:fig:v3:android:01IndexNotCalibrated} aparece la pantalla principal cuando se detecta que el usuario no ha registrado y calibrado el dispositivo. al pulsar sobre el botón "registrar el dispositivo" se cargaría la pantalla de la figura~\ref{c4:fig:v3:android:04RegisterDevice}, mientras que al pulsar el botón "calibrar dispositivo" se cargaría la pantalla de la figura~\ref{c4:fig:v3:android:05CalibrateDevice}. En la parte inferior de la pantalla, aparece un indicador del número de pasos que se han realizado para poder utilizar la aplicación. En este caso, como no se ha registrado ni calibrado el dispositivo, aparece el literal "0/2". El botón para calibrar el dispositivo permanece bloqueado hasta que se registre el dispositivo ya que es necesario realizar primero este paso. Por otro lado, como se verá también en otras pantallas, una vez una pantalla haya cumplido su función y ya no tenga razón de ser (como ocurre con el registro del dispositivo, que solo se realiza una vez), el acceso a estas pantallas quedarán bloqueadas y en los literales de acceso a las mismas se concatenará el literal "(hecho)", tal y como se puede ver en la pantalla de la figura~\ref{4:fig:v3:android:06CalibrateDevice2}.
+    \item En las figuras ~\ref{c4:fig:v3:android:02MenuNotCalibrated} y ~\ref{c4:fig:v3:android:03MenuCalibrated} aparecen respectivamente las pantallas cuando el usuario no ha calibrado el dispositivo y cuando sí lo ha calibrado y registrado. Como se puede ver, se van bloqueando y desbloqueando las pantallas según el estado de las interaciones del usuario con la aplicación, no permitiendo el acceso a pantallas que en el momento dado no tienen razón de ser. Otro elemento que se puede ver es que una vez se registra el dispositivo, se incluye en el menú un literal con el nombre y apellidos del paciente.
+    \item En la figura~\ref{c4:fig:v3:android:04RegisterDevice} se puede ver cómo se realizar el registro del dispositivo. En el campo de entrada "token" se introduciría el token proporcionado por el terapeuta y al pulsar enviar, en función del resultado obtenido tras la petición a la web de registro del usuario se mostraría el mensaje de error por haber introducido un token inválido o se redirigiría al usuario a la pantalla de la figura~\ref{c4:fig:v3:android:06CalibrateDevice2} incluyendo un mensaje \textit{toast} indicando que el registro se ha realizado correctamente.
+    
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/01IndexNotCalibrated.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de inicio cuando el dispositivo no está calibrado]{Mockup de la 3ª iteración de la pantalla de inicio cuando el dispositivo no está calibrado}
+        \label{c4:fig:v3:android:01IndexNotCalibrated}
+    \end{minipage}
+\end{figure}
+
+ \item Para calibrar el dispositivo, es necesario obtener los valores mínimos y máximos de las constantes fisiológicas con las que se determinarán el nivel de ira que está atravesando el paciente. Los valores mínimos se obtienen durante el sueño, tal y como se puede ver en las figuras~\ref{c4:fig:v3:android:07CalibrateSleep} y~\ref{c4:fig:v3:android:08CalibrateSleep2}. Los valores máximos se obtendrán durante una sesión de ejercicio físico que se registrará en la pantalla de la figura~\ref{c4:fig:v3:android:09CalibrateExercise}. El orden de la calibración de los valores mínimos y máximos es indiferente.
+   \item Una vez se haya finalizado la calibración durante el ejercicio físico y el sueño, se cargará la que será la pantalla de la figura~\ref{c4:fig:v3:android:10IndexCalibrated}, que a partir de ahora será la nueva pantalla principal, sustituyendo a la pantalla de la figura~\ref{c4:fig:v3:android:01IndexNotCalibrated}, que al dejar de tener razón de ser pasará a dejar de ser accesible. En esta nueva pantalla principal se puede ver un icono que representa el termómetro de la ira con cinco estados correspondientes a los valores enteros entre cero y cuatro. Este icono viene acompañado de un literal con la denominación del nivel de ira siguiendo un patrón de colores similar al de un semáforo y un literal con el nivel de ira actual del paciente entre cero y cuatro. Estos elementos son comunes a las pantallas de las figuras~\ref{c4:fig:v3:android:10IndexCalibrated},~\ref{c4:fig:v3:android:11Episode1} y~\ref{c4:fig:v3:android:12Episode2}. Tras esto, en la pantalla de la figura~\ref{c4:fig:v3:android:10IndexCalibrated} se puede ver un literal en el que aparecerán el número de episodios en las últimas 24 horas y si este número de episodios es igual al día anterior o el número de episodios mayor o menor respecto al día anterior.    
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/02MenuNotCalibrated.jpg}}
+        \caption[Mockup de la 3ª iteración del menú cuando el dispositivo no está calibrado]{Mockup de la 3ª iteración del menú cuando el dispositivo no está calibrado}
+        \label{c4:fig:v3:android:02MenuNotCalibrated}
+    \end{minipage}
+\end{figure}
+   
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/03MenuCalibrated.jpg}}
+        \caption[Mockup de la 3ª iteración del menú cuando el dispositivo está calibrado]{Mockup de la 3ª iteración del menú cuando el dispositivo está calibrado}
+        \label{c4:fig:v3:android:03MenuCalibrated}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/04RegisterDevice.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de registro del dispositivo]{Mockup de la 3ª iteración de la pantalla de registro del dispositivo}
+        \label{c4:fig:v3:android:04RegisterDevice}
+    \end{minipage}
+\end{figure}   
+    
+
+   
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/05CalibrateDevice.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla para calibrar el dispositivo (I/II)]{Mockup de la 3ª iteración de la pantalla para calibrar el dispositivo (I/II)}
+        \label{c4:fig:v3:android:05CalibrateDevice}
+    \end{minipage}
+\end{figure}   
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/06CalibrateDevice2.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla para calibrar el dispositivo (II/II)]{Mockup de la 3ª iteración de la pantalla para calibrar el dispositivo (II/II)}
+        \label{c4:fig:v3:android:06CalibrateDevice2}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/07CalibrateSleep.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla para calibrar durante el sueño (I/II)]{Mockup de la 3ª iteración de la pantalla para calibrar durante el sueño (I/II)}
+        \label{c4:fig:v3:android:07CalibrateSleep}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/08CalibrateSleep2.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla para calibrar durante el sueño (II/II) físico]{Mockup de la 3ª iteración de la pantalla para calibrar durante el sueño (II/II)}
+        \label{c4:fig:v3:android:08CalibrateSleep2}
+    \end{minipage}
+\end{figure}
+   
+   \item La pantalla de la figura~\ref{c4:fig:v3:android:11Episode1} se cargará automáticamente cuando se inicie un episodio. En esta pantalla, el usuario deberá determinar el motivo principal de la ira entre trece opciones distintas. Una vez se haya determinado este motivo, se cargará la pantalla de la figura~\ref{c4:fig:v3:android:12Episode2}.
+   \item En la pantalla de la figura~\ref{c4:fig:v3:android:12Episode2} aparecerá la pauta recomendada al paciente para reducir su nivel de ira. En caso de querer ver otra pauta, podrá descartar y cargar otra pauta pulsando sobre las fechas de la izquierda y derecha. A su vez, podrá rellenar comentarios sobre la pauta en cuestión que serán después enviados a la terapeuta para poder afinar las pautas. El botón para guardar los comentarios estará deshabilido siempre que no se detecte que el campo de texto de comentarios está relleno, acción que habilitará este botón. Una vez encontrada una pauta adecuada y esta haya sido aplicada (se presupone que el paciente siempre va a encontrar una pauta que le sea útil y que éste aplique), al pulsar sobre el botón "pauta aplicada", se cargará la pantalla de la figura~\ref{c4:fig:v3:android:13Episode3}.
+   
+   
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/09CalibrateExercise.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla para calibrar durante el ejercicio físico]{Mockup de la 3ª iteración de la pantalla para calibrar durante el ejercicio físico}
+        \label{c4:fig:v3:android:09CalibrateExercise}
+    \end{minipage}
+\end{figure}   
+   
+   \item En la pantalla de la figura~\ref{c4:fig:v3:android:13Episode3} el usuario deberá indicar si la pauta que finalmente aplicó le resultó útil o no. Tras esto, si se detecta que el nivel de ira del paciente ha bajado a cero, se cargará la pantalla~\ref{c4:fig:v3:android:10IndexCalibrated}. En caso contrario, se cargará la pantalla~\ref{c4:fig:v3:android:12Episode2} y se seguirá este mismo ciclo hasta que se detecte que ha finalizado el episodio de ira.
+
+   
+   \item En la pantalla de las figuras~\ref{c4:fig:v3:android:14EpisodesHistory} y~\ref{c4:fig:v3:android:15EpisodesHistory2} se puede ver la búsqueda que puede hacer el usuario para ver la evolución de los episodios del paciente agrupados en intervalos de un día. Se muestran tres gráficas, con la que se puede determinar el número de episodios por día y la duración media y total de estos episodios, para que así el paciente pueda ver su evolución a lo largo del tiempo.
+\end{itemize}
+
+\paragraph{}
+En este caso, a diferencia de lo que ocurre con la tercera versión de la aplicación web, debido a que se terminó esta última versión en una fecha próxima a la entrega de este trabajo combinado con el hecho de que fuese en periodo vacacional, las modificaciones que pudieran surgir fruto de la evaluación de esta versión por parte de la experta quedan relegadas al trabajo futuro.
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/10IndexCalibrated.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de inicio cuando el dispositivo está calibrado]{Mockup de la 3ª iteración de la pantalla de inicio cuando el dispositivo está calibrado}
+        \label{c4:fig:v3:android:10IndexCalibrated}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/11Episode1.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de selección del motivo del episodio de ira]{Mockup de la 3ª iteración de la pantalla de selección del motivo del episodio de ira}
+        \label{c4:fig:v3:android:11Episode1}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/12Episode2.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de la pauta recomendada]{Mockup de la 3ª iteración de la pantalla de la pauta recomendada}
+        \label{c4:fig:v3:android:12Episode2}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/13Episode3.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de valoración de la pauta]{Mockup de la 3ª iteración de la pantalla de valoración de la pauta}
+        \label{c4:fig:v3:android:13Episode3}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/14EpisodesHistory.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de historial de episodios (I/II)]{Mockup de la 3ª iteración de la pantalla de historial de episodios (I/II)}
+        \label{c4:fig:v3:android:14EpisodesHistory}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.6\textwidth}
+        \centering
+        \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/android/15EpisodesHistory2.jpg}}
+        \caption[Mockup de la 3ª iteración de la pantalla de historial de episodios (II/II)]{Mockup de la 3ª iteración de la pantalla de historial de episodios (II/II)}
+        \label{c4:fig:v3:android:15EpisodesHistory2}
+    \end{minipage}
+\end{figure}
+
+\subsubsection{Diseño de la aplicación web del terapeuta}
 \paragraph{}
 Para el diseño de la web, ha sido vital contar con un \textit{framework} de estilo CSS que ahorrase tiempo y sirviese para estandarizar el \textit{frontend}. Para la interfaz, se ha utilizado extensivamente las cajas. Las cajas, son una división de html con bordes grises que ha servido para agrupar elementos similares, como pueden ser los elementos secundarios de una tabla (número de registros totales, nombre de la tabla y paginadores) y la tabla en sí. Las operaciones que se realizan en la interfaz están conectadas con la base de datos de \textit{Mongo}, por lo que las operaciones \textit{CRUD} que se realizan en la interfaz, se persisten en Mongo. Las única limitación del diseño respecto a la implementación es que la web no está conectada por RabbitMQ a la aplicación Android, por lo que todos los datos son inventados y no hay un flujo de datos en tiempo real, ya que para evaluar el diseño es innecesario.
 
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:index} se puede ver la página principal de la web. En la parte superior, aparecen el número de pautas, pacientes y grupos registrados por el usuario. Cada uno de ellos redireccionaría a la página correspondiente de búsqueda de pautas, pacientes o grupos. En la parte inferior, hay un seleccionable con todos los pacientes y una serie de filtros para ver todos los episodios del paciente que se ha seleccionado en la franja temporal indicada. Tras realizar la búsqueda, se rellenaría una tabla con una fila por cada episodio. Esta lista de episodios podrán ser luego vistos uno a uno en detalle al clicar sobre los enlaces de cada fila con la palabra "ver".
 
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/01-index.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla principal de la web]{Mockup de la 3ª iteración de la pantalla principal de la web}
+    \label{c4:fig:v3:web:index}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/02-registrarPaciente.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (1/2)]{Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (1/2)}
+    \label{c4:fig:v3:web:registroPaciente}
+\end{figure}
+
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:registroPaciente} aparece el formulario para registrar el paciente. La información obligatoria que hay que introducir es el nombre, primer apellido, edad y género del paciente. El único campo opcional es el del segundo apellido, ya que en algunos países como Inglaterra solo usan un apellido. Al pulsar sobre el botón para registrar paciente, este primer formulario se desplazará a la izquierda y todos los campos se volverán no editables, tal y como se ve en la figura~\ref{c4:fig:v3:web:registroPaciente2}. En paralelo, se mostrará un mensaje indicando a la terapeuta el \textit{token} que el paciente que se está registrando debe introducir en la aplicación móvil. Por motivos de seguridad, se da un plazo de cinco minutos, por lo que se espera que el paciente acuda a la consulta con su dispositivo móvil y se descargue la aplicación en la consulta. En caso de haber introducido algún dato erróneo, se cancelaría el proceso de sincronización y los campos del formulario se volverían editables. En el caso de que sí se produzca la sincronización con el dispositivo móvil, se redireccionaría a la página principal y se indicaría mediante un mensaje que se ha completado correctamente el registro del usuario.
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/03-registrarPaciente-2.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (2/2)]{Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (2/2)}
+    \label{c4:fig:v3:web:registroPaciente2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/04-verPacientes.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para ver pacientes en la web]{Mockup de la 3ª iteración de la pantalla para ver pacientes en la web (2/2)}
+    \label{c4:fig:v3:web:verPacientes}
+\end{figure}
 
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:verPacientes} se encuentra un buscador genérico de pacientes. Se puede buscar a los pacientes por nombre, primer apellido, segundo apellido, edad, género y pautas que tenga asociadas. Tras realizar la búsqueda, debajo de estos filtros se rellenaría la tabla con los registros de todos los pacientes que coincidan con dichos criterios. Si no se rellena ninguno de los campos, se mostrarían todos los pacientes almacenados. Cada fila incluye un enlace para ver la información detallada de cada paciente. A su vez, es desde esta pantalla desde la que se pueden borrar pacientes. Antes de realizarse un borrado de un paciente, aparecería una ventana emergente como la que se ve en la figura~\ref{c4:fig:v3:web:ventanaEmergente} con la información del registro que se eliminaría. Esta ventana es análoga a la que se mostraría antes del borrado de pautas o grupos. En caso de pulsar aceptar, se realizaría un borrado físico de dicho registro.
 
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/04-verPacientes-2.png}}
+    \caption[Mockup de la 3ª iteración de una ventana emergente en la web]{Mockup de la 3ª iteración de una ventana emergente en la web}
+    \label{c4:fig:v3:web:ventanaEmergente}
+\end{figure}
+
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:verPaciente} se puede ver la información de un paciente. En esta pantalla, la información es no editable, pero se incluyen enlaces para editar la información personal del paciente, enlazar pautas al paciente o registrar una nueva pauta para el paciente dado. La única excepción a esta regla es que se pueden desvincular pautas sin salir de esta pantalla. El motivo por el que se tomó esta decisión es porque si no, se necesitaría incluir una pantalla extra de profundidad para editar las pautas, lo que se consideraba que podría ser capcioso para el usuario.
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/05-verPaciente.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para ver un paciente en la web]{Mockup de la 3ª iteración de la pantalla para ver un paciente en la web}
+    \label{c4:fig:v3:web:verPaciente}
+\end{figure}
 
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:modificarPaciente} se puede ver cómo se podría modificar la información personal del paciente. La información que se muestra es el formulario de registro de paciente pero estableciendo como valores por defecto de los campos (todos ellos editables) los valores del paciente. En caso de pulsar sobre el botón volver, se cargará la página que se encuentre por encima en la jerarquía, que en este caso es la página para ver la información del paciente. Al pulsarlo, no se guardarán las modificaciones que se hayan hecho en esta pantalla. En caso de modificar dicho registro y de pulsar sobre guardar, se volvería a la pantalla para ver el paciente en cuestión incluyendo un mensaje flotante para indicar que el paciente se ha modificado correctamente.
@@ -477,8 +705,32 @@ En la figura~\ref{c4:fig:v3:web:nuevaPautaPaciente} aparece la pantalla que se m
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:enlazarPautaPaciente} se puede ver la pantalla que se carga al clicar sobre el botón "enlazar pautas" en la pantalla para ver el paciente. Es un formulario de búsqueda de todas las pautas en la que debajo aparece la lista de pautas que coinciden con los parámetros de búsqueda. Esta tabla incluye una columna con una caja seleccionable por cada fila (siendo, a su vez, una pauta por fila). Al pulsar sobre el botón "enlazar pautas", se vincularían las pautas seleccionadas al paciente en el que se haya hecho clic en el botón de "enlazar pautas". La información de este paciente aparece a su vez en la parte superior de la página. Por último, como en caso de que haya más registros en la tabla que el límite de filas por tabla que se haya establecido, se mostrará debajo de la tabla un seleccionable con todas las páginas de la tabla. Al cambiar el número de página de las tablas, se actualizarán los registros de la tabla. Estos marcadores se incluyen en todas las tablas de la web, pero solo se muestran al usuario si hay más de una página.
 
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/06-verPaciente-modificar.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para modificar un paciente en la web]{Mockup de la 3ª iteración de la pantalla para modificar un paciente en la web}
+    \label{c4:fig:v3:web:modificarPaciente}
+\end{figure}
+
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:registrarPauta} aparece la pantalla para registrar una pauta. Los datos obligatorios son nombre de la pauta (que será el literal que le aparezca al usuario en el dispositivo móvil) e intensidades de la ira asociadas. De manera optativa, se puede incluir una descripción. Esta descripción sólo la visualizará el terapeuta.
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/06-verPaciente-nuevaPauta.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para crear una nueva para pauta para un paciente en la web]{Mockup de la 3ª iteración de la pantalla para crear una nueva para pauta para un paciente en la web}
+    \label{c4:fig:v3:web:nuevaPautaPaciente}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/07-verPaciente-enlazarPauta.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para enlazar una para pauta para un paciente en la web]{Mockup de la 3ª iteración de la pantalla para enlazar una para pauta para un paciente en la web}
+    \label{c4:fig:v3:web:enlazarPautaPaciente}
+\end{figure}
+
+
+
 
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:episodio} se puede ver la información detallada de un episodio de un paciente. Esto incluye el histograma con el nivel de alerta y una tabla en la que aparece el nivel de alerta en cada momento, la pauta que se le recomendó al paciente, si la siguió o no y los comentarios opcionales del paciente.
@@ -488,6 +740,20 @@ En la figura~\ref{c4:fig:v3:web:verPautas} se encuentra un formulario de búsque
 
 \paragraph{}
 En la figura~\ref{c4:fig:v3:web:verPauta} se encuentra la información de una pauta. Se incluyen los datos de la pauta, la tabla de paciente que hacen uso de la pauta y la tabla de grupos que incluyen esta pauta. Estas dos últimas pautas incluyen una columna para desvincular cualquiera de los registros de la pauta en cuestión así como enlaces para vincular la pauta a nuevos pacientes y/o grupos.
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/08-registrarPauta.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para registrar una nueva pauta en la web]{Mockup de la 3ª iteración de la pantalla para registrar una nueva pauta en la web}
+    \label{c4:fig:v3:web:registrarPauta}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/09-verEpisodio.png}}
+    \caption[Mockup de la 3ª iteración de la pantalla para ver un episodio en la web]{Mockup de la 3ª iteración de la pantalla para ver un episodio en la web}
+    \label{c4:fig:v3:web:episodio}
+\end{figure}
 
 \paragraph{}
 Al pulsar sobre el botón "editar" en la pantalla~\ref{c4:fig:v3:web:verPauta}, se cargaría la pantalla de la figura~\ref{c4:fig:v3:web:editarPauta}. Esta pantalla incluye el formulario que se utilizó para registrar la pauta precargado con los datos de la pauta que se pretende modificar.
@@ -501,161 +767,167 @@ Al pulsar el botón "enlazar un nuevo grupo" se cargaría la pantalla~\ref{c4:fi
 \paragraph{}
 En la pantalla~\ref{c4:fig:v3:web:editarPauta}, se puede ver el formulario de registro de la pauta con los valores que tenga la pauta. Si se clica sobre volver, se cargaría la página para ver la pauta en cuestión y se perderían los cambios. Al dar clic en modificar, se persistirían los cambios.
 
-\paragraph{}
-En la pantalla~\ref{c4:fig:v3:web:registrarGrupo}, se registraría un grupo de pautas. En este formulario se incluye directamente un seleccionable en el que se pueden marcar varias opciones con todas las pautas almacenadas que formarán parte del grupo.
-
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/01-index.png}
-    \caption[Mockup de la 3ª iteración de la pantalla principal de la web]{Mockup de la 3ª iteración de la pantalla principal de la web}
-    \label{c4:fig:v3:web:index}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/02-registrarPaciente.png}
-    \caption[Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (1/2)]{Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (1/2)}
-    \label{c4:fig:v3:web:registroPaciente}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/03-registrarPaciente-2.png}
-    \caption[Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (2/2)]{Mockup de la 3ª iteración de la pantalla de registro del paciente en la web (2/2)}
-    \label{c4:fig:v3:web:registroPaciente2}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/04-verPacientes.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para ver pacientes en la web]{Mockup de la 3ª iteración de la pantalla para ver pacientes en la web (2/2)}
-    \label{c4:fig:v3:web:verPacientes}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/04-verPacientes-2.png}
-    \caption[Mockup de la 3ª iteración de una ventana emergente en la web]{Mockup de la 3ª iteración de una ventana emergente en la web}
-    \label{c4:fig:v3:web:ventanaEmergente}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/05-verPaciente.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para ver un paciente en la web]{Mockup de la 3ª iteración de la pantalla para ver un paciente en la web}
-    \label{c4:fig:v3:web:verPaciente}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/06-verPaciente-modificar.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para modificar un paciente en la web]{Mockup de la 3ª iteración de la pantalla para modificar un paciente en la web}
-    \label{c4:fig:v3:web:modificarPaciente}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/06-verPaciente-nuevaPauta.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para crear una nueva para pauta para un paciente en la web]{Mockup de la 3ª iteración de la pantalla para crear una nueva para pauta para un paciente en la web}
-    \label{c4:fig:v3:web:nuevaPautaPaciente}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/07-verPaciente-enlazarPauta.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para enlazar una para pauta para un paciente en la web]{Mockup de la 3ª iteración de la pantalla para enlazar una para pauta para un paciente en la web}
-    \label{c4:fig:v3:web:enlazarPautaPaciente}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/08-registrarPauta.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para registrar una nueva pauta en la web]{Mockup de la 3ª iteración de la pantalla para registrar una nueva pauta en la web}
-    \label{c4:fig:v3:web:registrarPauta}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/09-verEpisodio.png}
-    \caption[Mockup de la 3ª iteración de la pantalla para ver un episodio en la web]{Mockup de la 3ª iteración de la pantalla para ver un episodio en la web}
-    \label{c4:fig:v3:web:episodio}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/10-verPautas.png}
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/10-verPautas.png}}
     \caption[Mockup de la 3ª iteración de la pantalla para ver pautas en la web]{Mockup de la 3ª iteración de la pantalla para ver pautas en la web}
     \label{c4:fig:v3:web:verPautas}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta.png}
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta.png}}
     \caption[Mockup de la 3ª iteración de la pantalla para ver una pauta en la web]{Mockup de la 3ª iteración de la pantalla para ver una pauta en la web}
     \label{c4:fig:v3:web:verPauta}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta-enlazarPaciente.png}
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta-enlazarPaciente.png}}
     \caption[Mockup de la 3ª iteración de la pantalla para enlazar una pauta a pacientes en la web]{Mockup de la 3ª iteración de la pantalla para enlazar una pauta a pacientes en la web}
     \label{c4:fig:v3:web:enlazarPautaPacientes}
 \end{figure}
 
+\paragraph{}
+En la pantalla~\ref{c4:fig:v3:web:registrarGrupo}, se registraría un grupo de pautas. En este formulario se incluye directamente un seleccionable en el que se pueden marcar varias opciones con todas las pautas almacenadas que formarán parte del grupo.
+
+%TODO: revisar con pantallazos de la versión final y con los cambios que aparecen en el correo.
+\paragraph{}
+Tras brindarle a la experta los credenciales necesarios para poder acceder a la web, las respuestas referentes a este diseño fueron muy positivas. Las únicas modificaciones que fue necesario realizar fue la inclusión de un cuarto nivel de posibles estados en el termómetro de la ira y agrupar las columnas de nombre y apellidos de los pacientes en una única celda.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta-enlazarGrupo.png}
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta-enlazarGrupo.png}}
     \caption[Mockup de la 3ª iteración de la pantalla para enlazar una pauta a grupos en la web]{Mockup de la 3ª iteración de la pantalla para enlazar una pauta a grupos en la web}
     \label{c4:fig:v3:web:enlazarPautaGrupos}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta-editar.png}
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/11-verPauta-editar.png}}
     \caption[Mockup de la 3ª iteración de la pantalla para editar una pauta en la web]{Mockup de la 3ª iteración de la pantalla para enlazar una pauta en la web}
     \label{c4:fig:v3:web:editarPauta}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=7cm, width=\textwidth]{Imagenes/04DescProblema/mockups/v3/web/12-registrarGrupo.png}
+    \frame{\includegraphics[scale=0.2]{Imagenes/04DescProblema/mockups/v3/web/12-registrarGrupo.png}}
     \caption[Mockup de la 3ª iteración de la pantalla para registrar un grupo en la web]{Mockup de la 3ª iteración de la pantalla para registrar un grupo en la web}
     \label{c4:fig:v3:web:registrarGrupo}
 \end{figure}
 
-\subsection{Implementación}
+\section{Implementación}
 \label{c4:sec:impl}
 \paragraph{}
-La pulsera (tercer elemento de la figura~\ref{c4:fig:dfd}) es un dispositivo IOT que obtendrá las sensorizaciones del paciente (primer y segundo elemento de la figura~\ref{c4:fig:dfd}) cada [TODO] segundos. Concretamente, obtendrá los datos de la actividad electrodérmica, y el ritmo cardíaco. Para ello, se ha elegido el modelo [TODO: modelo y descripción del modelo de la pulsera haciendo referencia a la comparación de pulseras del estado del arte].
+En este trabajo, se ha diseñado por un lado una aplicación Android (cuarto elemento de la figura~\ref{c4:fig:dfd}) que utilizarán los pacientes (primer elemento de la figura~\ref{c4:fig:dfd}) y una web que utilizarán los terapeutas (sexto elemento de la figura~\ref{c4:fig:dfd}). En la aplicación Android, a partir del ritmo cardíaco, la actividad electrodérmica de la piel y la aceleración, se determinará en tiempo real el nivel de ira de un paciente en una escala de cero a cuatro. La aceleración y la actividad electrodérmica de la piel se obtienen con el anillo de Moodmetric (tercer elemento de la figura~\ref{c4:fig:dfd}), mientras que el ritmo cardíaco se obtendría con una pulsera de Hexiwear (segundo elemento de la figura~\ref{c4:fig:dfd})\footnote{Debido a la falta de tiempo, no se ha conseguido obtener el ritmo cardíaco de la pulsera Hexiwear, por lo que, como se detallará más adelante, este valor se simula en la aplicación de Android.}. A través del protocolo BLE se produciría el emparejamiento entre la pulsera y el anillo y la posterior comunicación a la aplicación Android de las sensorizaciones realizadas al paciente.
 
 \paragraph{}
-Estas sensorizaciones se enviarán por \ac{BLE} al dispositivo móvil con sistema operativo Android del paciente (conexión entre el tercer y cuarto elemento de la figura~\ref{c4:fig:dfd}). Este protocolo de comunicación utiliza el sistema de encriptación \ac{AES} (\citep{ble-aes}), lo que dificulta que un atacante que se encuentre dentro del radio de emisión de la pulsera inteligente pueda acceder a los datos sensorizados.
-
-\paragraph{}
-La conexión será gestionada mediante una aplicación Android creada para este proyecto (cuareto elemento de la figura~\ref{c4:fig:dfd}). En esta aplicación, se mostrarán pautas para el nivel de alerta detectado en el paciente (quinto elemento de la figura~\ref{c4:fig:dfd}), o, en caso de que no haya alertas, mensajes de refuerzo positivo.
-
-\paragraph{}
-Al conjunto de alertas que se producen desde el estado de reposo, el o los estados de alerta y la vuelta al estado de reposo se denomina episodio. Los episodios tienen aparejados una serie de pautas que se le recomiendan al paciente durante el episodio, que podrán ser descartadas por el paciente si no se consideran útiles y añadir comentarios que puedan ser después útiles en la consuta. El usuario adicionalmente deberá indicar si ha seguido o no la pauta recomendada (conexiones entre el elemento uno y cuatro de la figura~\ref{c4:fig:dfd}). En tanto en cuanto el paciente no vuelva al estado de reposo, se le deben de seguir mostrando pautas (quinto elemento de la figura~\ref{c4:fig:dfd}).
-
-\paragraph{}
-Estos episodios, creados a partir de los conjunto de pautas, alertas e interacciones del usuario con la aplicación (sexto elemento de la figura~\ref{c4:fig:dfd}), serán almacenados en dos bases de datos: la base de datos local de SQLite (séptimo elemento de la figura~\ref{c4:fig:dfd}) y la base de datos del servidor de MongoDB (octavo elemento de la figura ~\ref{c4:fig:dfd}). Es importante persistir los episodios en la base de datos del móvil para que el paciente también pueda ver en la aplicación su registro histórico de episodios. Los datos se enviarán al servidor mediante el protocolo de comunicación AMQP.
+Previamente es necesario que el terapeuta registre una serie de pautas en la web (quinto elemento de la figura~\ref{c4:fig:dfd}), que después asignará al paciente en cuestión. Para el registro del paciente se ha tomado como premisa que dicho registro se produciría presencialmente en la consulta, donde dicho paciente acudiría con el dispositivo móvil que utilizará para realizar las mediciones. Así, en el 
+último paso del proceso de registro del usuario, al terapeuta le aparecerá un token alfanumérico de seis dígitos. El paciente, que previamente debe haberse descargado la aplicación, introducirá en la pantalla de registro este token. Al pulsar aceptar en la pantalla de Android, se producirá una petición \textit{API REST} a la aplicación web para comprobar si dicho token es correcto. En caso de que así sea, la respuesta a la petición incluirá los credenciales del paciente (nombre, apellidos, edad) así como un token para futuras comunicaciones. Este nuevo token será utilizado para el resto de peticiones \textit{API REST} para identificar al paciente.
 
 \begin{figure}[H]
     \centering
     %width=3cm, height=3cm
-    \includegraphics[height=9cm, width=\textwidth]{Imagenes/04DescProblema/dfd-all.png}
+    \includegraphics[scale=0.5]{Imagenes/04DescProblema/dfd-all.png}
     \caption[Diagrama de flujo de datos de la aplicación]{Diagrama de flujo de datos de la aplicación}
     \label{c4:fig:dfd}
 \end{figure}
 
-\paragraph{}
-Si el móvil tiene permisos de superusuario y la base de datos no está encriptada, una aplicación maliciosa podría acceder a estos datos de SQLite. Para evitar esto, se encriptará esta base de datos (séptimo elemento de la figura~\ref{c4:fig:dfd}) con el sistema [TODO: ponerlo cuando esté hecho].
 
 \paragraph{}
-Los episodios almacenados en la base de datos del servidor (octavo elemento de la figura~\ref{c4:fig:dfd}) podrán ser luego visualizados en la web (noveno elemento de la figura~\ref{c4:fig:dfd}) por parte del terapeuta (decimoprimer elemento de la figura~\ref{c4:fig:dfd}). El terapeuta podrá añadir nuevos pacientes, modificar las pautas de los pacientes a través de la web, información que luego se persistirá a su vez en la base de datos de los pacientes correspondientes (séptimo elemento de la figura~\ref{c4:fig:dfd}).
+Una vez el usuario se ha registrado correctamente, por un lado el terapeuta deberá asignarle pautas para poder gestionar la ira y por otro, el paciente deberá calibrar tanto el anillo como la pulsera. Esta calibración supone obtener unas mediciones basales en estado de reposo (en este caso, mientras está durmiendo) y otras mediciones cuando se está realizando ejercicio físico, ya que cada persona tiene unas constantes fisiológicas distintas. En el caso de la pulsera, como ya se adelantó, estas mediciones son simuladas. En concreto, se simulan las mediciones generando valores aleatorios en un determinado rango.
 
 \paragraph{}
-Para que un terapeuta pueda acceder a la web, antes tiene que registrarse e iniciar sesión. Los credenciales de los terapeutas se guardan en una base de datos de SQLite (décimo elemento de la figura~\ref{c4:fig:dfd}). Estos credenciales están separados del resto de registros de la web por motivos de ciberseguridad. Así, si se detecta un intento de acceso indebido a la base de datos con los credenciales de los terapeutas, el administrador de la web, podría a bloquear cautelarmente el acceso a la base de datos de MongoDB (octavo elemento de la figura~\ref{c4:fig:dfd}).
+Durante el calibrado del sueño (que debe tener una duración mínima de dos horas), se obtienen los cuatro menores valores de esa franja de tiempo para la actividad electrodérmica de la piel, mientras que durante el ejercicio físico se obtienen los valores máximos de la actividad electrodérmica de la piel, la aceleración y el ritmo cardíaco. Tras esto, se obtienen los umbrales de activación para cada una de las tres variables. Para ello, de los cuatro valores máximos y/o mínimos que se han obtenido para cada constante, se eliminan los valores de los extremos superiores e inferiores. Después, en el caso de la actividad electrodérmica, existirán cuatro umbrales, que se obtendrán dividiendo la diferencia entre el valor máximo registrado de la actividad electrodérmica y el valor mínimo. En el caso de la aceleración y el ritmo cardíaco, existirá solo un valor umbral para cada uno que se obtendrá de la media de los valores máximos registrados multiplicado por la constante 0.9 para la aceleración y 0.75 para el ritmo cardíaco, tal y como se puede ver en el fragmento de código~\ref{c4:code:calibrate}.
+
+\begin{lstlisting}[language=Java, caption=Obtención de los umbrales de las constantes fisiológicas, label=c4:code:calibrate, stepnumber=1]
+    HashMap<Integer, Long> minimumEDA = db.getMinimumMeasurementsSensor(SENSOR_EDA);
+    HashMap<Integer, Long> maximumAcc = db.getMaximumMeasurementsSensor(SENSOR_ACC);
+    HashMap<Integer, Long> maximumHR = db.getMaximumMeasurementsSensor(SENSOR_HR);
+    HashMap<Integer, Long> maximumEDA = db.getMaximumMeasurementsSensor(SENSOR_EDA);
+    
+    minimumEDA.remove(0);
+    maximumAcc.remove(0);
+    maximumHR.remove(0);
+    maximumEDA.remove(0);
+    
+    //EDA
+    
+    long basalEDA = minimumEDA.get(1);
+    long stepEDA = (maximumEDA.get(1) - basalEDA)/4;
+    
+    long thesholdEDA [] = new long[]{basalEDA, basalEDA+stepEDA, basalEDA+stepEDA*2, basalEDA+stepEDA*3, basalEDA+stepEDA*4};
+    
+    //ACC
+    
+    long totalAccVal = 0;
+
+    for(long accValue : maximumAcc.values())
+        totalAccVal += accValue;
+
+    long thresholdAcc = (long) ((totalAccVal/maximumAcc.size())*0.9);
+    
+    //HR
+    
+    long totalHRVal = 0;
+
+    for(long HRValue : maximumAcc.values())
+        totalHRVal += HRValue;
+
+    long thresholdHR = (long) ((totalAccVal/maximumAcc.size())*0.75);    
+
+\end{lstlisting}
 
 \paragraph{}
-Para que el terapeuta pueda realizar estas operaciones, antes tiene que registrarse e iniciar sesión en su cuenta. Los credenciales que se generan al registrar un terapeuta se almacenan en una base de datos SQLite (elemento número ocho de la figura~\ref{c4:fig:dfd}). Esta base de datos SQLite está separada de la base de datos para almacenar el resto de información del servidor por motivos de seguridad. Así, si se detectan peticiones anómalas a esta base de datos, se podrá bloquear cautelarmente la base de datos de MongoDB antes de que se produzcan accesos no deseados a estos registros.
+Una vez se ha calibrado el dispositivo, se realizarán peticiones periódicas \textit{API REST} para comprobar si hay algún cambio respecto a las pautas que deba ser actualizado en la aplicación móvil. El terapeuta podrá realizar todas las operaciones \textit{CRUD} respecto a las pautas asociadas a los pacientes, mientras que el paciente únicamente será receptor de esos cambios. Para actualizar las pautas del paciente cuando el terapeuta las modifica en la web, cada vez que se modifique un registro de una pauta, esta será marcada con un uno en la base de datos. De manera periódica, la aplicación Android consultará mediante peticiones \textit{REST} si hay pautas marcadas con este uno que deban ser actualizadas en la base de datos local de Android, en cuyo caso se actualizarán acordemente.
+
+\paragraph{}
+La transformación de las mediciones fisiológicas en niveles de ira se realiza en la propia app a medida que van llegando las mediciones. El algoritmo utilizado para esta transformación se puede ver en el fragmento de código~\ref{c4:code:episode}. La idea es que si la aceleración y/o el ritmo cardíaco están por debajo de sus umbrales de activación, el nivel de ira es cero. Si ambas variables superan sus valores de activación, se pasaría a obtener el valor de activación de la actividad electrodérmica de la piel que esté más cercano a la constante fisiológica. A partir de esa cercanía, se obtendrá un valor de 0 a 4 con el nivel de ira del paciente.
+
+
+\begin{lstlisting}[language=Java, caption=Obtención del nivel de ira, label=c4:code:episode, stepnumber=1]
+    public static int measurementsToRangeLevel(long acc,long hr,long eda){
+
+        boolean accCriteria =  acc < thresholdAcc;
+        boolean hrCriteria =  hr > thresholdHR;
+
+        if(!accCriteria || !hrCriteria)
+            return 0;
+
+        return getClosestValue(edaThreshold, eda);
+
+    }
+\end{lstlisting}
+
+
+\paragraph{}
+En caso de que no se detecte ningún episodio, al paciente le aparecerá una pantalla principal en la que se le indicará que no está atravesando ningún episodio de ira, el número de episodios en las últimas 24 horas y la comparación con el día anterior, para poder ver su progreso en el corto plazo. Si quisiera ver este progreso en intervalos mayores, existe una pantalla para ver el historial de episodios en el que podrá filtrar el número de episodios, duración total y media de los episodios por día.
+
+\paragraph{}
+Si se detecta que el nivel de ira está por encima de cero, se cargará una pantalla para poder seleccionar el motivo que ha originado la ira. Tras esto, le aparecerá una pantalla recomendandole una pauta para lidiar con esa ira. En caso de que la pauta en sí no le satisfaga, podrá solicitar tantas nuevas pautas como desee (y hayan sido previamente definidas). Después de cada pauta aplicada (se asume que finalmente siempre aplicará alguna de las pautas), deberá indicar obligatoriamente si esa pauta le fue o no util, ya que con esta información el experto podrá ajustar la terapia con el paciente.A su vez, el paciente opcionalmente podrá enviar comentarios sobre las pautas que le aparecen, lo que podrá ayudar al terapeuta a ajustar mejor las pautas para próximas ocasiones.
+
+\paragraph{}
+Se puede dar el caso de que el paciente esté experimentando un episodio de ira pero ignore su teléfono móvil. Para evitar que esto provoque que el paciente se encuentre con pautas recomendadas de episodios de ira que ya han perdido la vigencia, se establece un minuto de caducidad de los estados de la ira: en caso de que el usuario lleve un minuto en alguna de las pantallas de gestión de la ira llevando ese tiempo en estado de reposo, se asume que el paciente no ha hecho caso al dispositivo móvil y por tanto se vuelve a cargar la pantalla de reposo. Ahora bien, el hecho de que no se haya interactuado con el dispositivo móvil no quita que se haya producido un episodio, por lo que este episodio de ira será igualmente registrado.
+
+\paragraph{}
+En lo que respecta a la web, esta tiene dos objetivos: poder realizar operaciones \textit{CRUD} sobre las pautas y los datos personales de pacientes y poder consultar los episodios de ira de los pacientes. Una vez cumplidos estos dos objetivos, esta solución tecnológica ayudará a mejorar la gestión de dichos episodios.
+
+\subsection{Justificación fisiológica}
+\paragraph{}
+El algoritmo que se utiliza para justificar la correlación entre las mediciones fisiológicas y el nivel de ira se basa en la combinación de diversas evidencias científicas, a saber:
+
+\begin{enumerate}
+    \item Existen evidencias científicas de la correlación positiva entre la acitvidad electrodérmica de la piel y la activación emocional \citep{lang1993looking, bradley2000affective}.
+    \item Existen evidencias científicas de la correlación positiva entre la acitvidad electrodérmica de la piel y el ejercicio físico \citep{boettger2010heart}.
+    \item Existen evidencias científicas que correlacionan positivamente el ritmo cardíaco y la ira \citep{prkachin1999cardiovascular, ax1953physiological, schwartz1981cardiovascular, funkenstein1955physiology}.
+    \item Se ha comprobado que el ritmo cardíaco durante el ejercicio físico es similar al que se registra durante un episodio de ira \citep{sinha1992cardiovascular}. Ahora bien, durante el ejercicio físico al estar el cuerpo en movimiento, se produce un incremento del valor del acelerómetro, mientras que en un episodio de ira este incremento de la aceleración no es necesario, hecho que permite diferenciar ambos escenarios entre sí.
+    \item La alegría también incrementa el ritmo cardíaco, pero este incremento es menor que en el caso de la ira \citep{prkachin1999cardiovascular}, por lo que ambas emociones se pueden diferenciar a partir del ritmo cardíaco.
+\end{enumerate}
+
+Partiendo de estas evidencias científicas, se han elaborado los algoritmos \ref{c4:code:calibrate} y \ref{c4:code:episode}. Ahora bien, este algoritmo cuenta con las siguientes limitaciones:
+
+\begin{enumerate}
+    \item Para este trabajo no se ha contado con expertos en la fisiología de las emociones; la persona experta en psicología estaba especializada en el tratamiento con personas con ira disfuncional, no en la obtención de la ira según constantes vitales. Esto significa que estas fórmulas se han obtenido en base a la evidencia científica que se ha encontrado en la bibliografía, pero al carecer de una formación sólida en esta materia, es posible que existan maneras más precisas para la medición de la ira (con la utilización de otros algoritmos y/o modificando el conjunto de constantes fisiológicas utilizadas).
+    \item En línea con lo que se comentaba en el punto anterior, las constantes que se establecen como umbrales de activación del ritmo cardíaco y la aceleración no tienen fundamento científico sólido pues no se han encontrado en la bibliografía cifras concretas que indiquen de manera clara cuál es el grado de correlación entre el ritmo cardíaco durante episodios de ira y durante el ejercicio físico, así como tampoco se han encontrado valores concretos para determinar los grados de aceleración que puedan determinar que un usuario está en reposo o realizando ejercicio físico. Esta última constante se podría haber obtenido de manera experimental, pero por falta de tiempo no ha sido posible.
+    \item Puede darse el caso de que una persona esté experimentando un episodio de ira y que a su vez se encuentre en realizando movimientos intensos (por ejemplo, si está rompiendo objetos o agrediendo físicamente a una persona). Este caso sería un falso negativo porque como las constantes del ritmo cardíaco durante el ejercicio físico y un episodio de ira están en el mismo umbral, la diferencia entre ambos casos se realiza con la aceleración. En este caso, para evitar falsos positivos y a falta de una variable adicional que determinase cuál de los dos escenarios es el correcto, se ha optado por eliminar los falsos positivos frente a los falsos negativos y que en este caso no se detecte el episodio de ira. Para eliminar tanto los falsos positivos y falsos negativos, presumiblemente sería necesario añadir una nueva constante fisiológica que discrimine los episodios de ira en los que la persona está en movimiento frente al ejercicio físico sin episodio de ira, pero esto es sólo una suposición.
+\end{enumerate}

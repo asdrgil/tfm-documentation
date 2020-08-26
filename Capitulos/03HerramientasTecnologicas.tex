@@ -11,6 +11,18 @@ En este capítulo, se van a explicar las distintas opciones tecnológicas que se
 
 
 %-------------------------------------------------------------------
+\section{Lenguaje de programación de la aplicación web}
+\paragraph{}
+Para el lenguaje de programación de la aplicación web se barajaban dos opciones: Java y Python. En este caso, el único motivo por el que se utilizó Python en lugar de Java fue simplemente porque se contaba con experiencia previa desarrollando aplicaciones web con ambos lenguajes y había resultado bastante más fácil e intuitivo el desarrollo web con Python. Así, sin necesidad de utilizar variables externas, se decidió que \textbf{el lenguaje de programación utilizado para desarrollar la aplicación web sería Python, concretamente usando el \textit{framework} de Flask}.
+
+\section{Sistema operativo para la aplicación móvil}
+\paragraph{}
+A la hora de elegir el sistema operativo objetivo para la aplicación móvil, hay un elemento fundamental que se debe tener en cuenta: la cuota de mercado de cada uno de ellos. Así, en una encuesta de 2019 de StatCounter~\citep{statCounter} se podía ver que el 74,45\% de la cuota global de usuarios móviles utilizaban Android, frente al 22,85\% que usan iOS y un 2,7\% que utilizan otros sistemas operativos. Sumando esto al hecho de que existe una comunidad de desarrolladores Android mucho más activa que la de iOS y que no se contaba con ningún dispositivo iOS para poder realizar el desarrollo, \textbf{se optó por programar una aplicación móvil para Android}.
+
+\section{Interfaz web}
+\paragraph{}
+Para el diseño de la interfaz de la página web, las dos opciones que se barajaron fueron Bootstrap y Bulma. Las principales ventajas de Bootstrap son que tiene una comunidad de desarrolladores mucho más activa que Bulma, es una solución con una cuota de mercado bastante superior, lo que hace que tengan una gama mucho mayor de componentes que se puedan añadir a la web. Las principales desventajas respecto a Bulma son que es más complicado de aprender y no existe gran flexibilidad en cuanto a la modificación de sus componentes. Hay otro elemento adicional que dependiendo del caso puede ser una ventaja o una desventaja que es que Bulma es únicamente un paquete de CSS mientras que Bootstrap incorpora Javascript. Para este proyecto, ambas soluciones son perfectamente válidas, pero \textbf{la solución que se ha implementado ha sido con Bulma}, ya que este es un proyecto mediano, sin gran complejidad en el diseño, en el que la estructura basada en cajas encaja a la perfección con este framework.
+
 \section{Bases de datos}
 \label{sec:tipoBD}
 \paragraph{}
@@ -50,7 +62,13 @@ Por último, tanto MongoDB como Couchbase cuentan con contenedores Docker ya con
 \end{itemize}
 
 \paragraph{}
-En este trabajo, se ha decidido usar MongoDB ya que es una base de datos con una sintaxis sencilla, con librería específica en Python, es ideal para soluciones distribuidas y es una base de datos no relacional, lo que facilitará el almacenamiento de datos con estructuras variables. Estas características se ajustan a posibles actualizaciones futuras de las estructuras de la base de datos sin tener que migrar todos los registros que ya están almacenados. Por ejemplo, si se permitiese en el futuro que el paciente pudiese subir una fotografía para identificarse, el token identificador de esta fotografía se podría añadir para los nuevos pacientes en la misma colección que la del resto de registros de pacientes antiguos sin fotografías. Por último, el flujo de datos de episodios puede ser muy elevado a largo plazo, por lo que una solución distribuida como es el caso de MongoDB facilitará la escalabilidad de la base de datos.
+En este trabajo, \textbf{se ha decidido usar MongoDB para almacenar la información del servidor} ya que es una base de datos con una sintaxis sencilla, con librería específica en Python, es ideal para soluciones distribuidas y es una base de datos no relacional, lo que facilitará el almacenamiento de datos con estructuras variables. Estas características se ajustan a posibles actualizaciones futuras de las estructuras de la base de datos sin tener que migrar todos los registros que ya están almacenados. Por ejemplo, si se permitiese en el futuro que el paciente pudiese subir una fotografía para identificarse, el token identificador de esta fotografía se podría añadir para los nuevos pacientes en la misma colección que la del resto de registros de pacientes antiguos sin fotografías. Por último, el flujo de datos de episodios puede ser muy elevado a largo plazo, por lo que una solución distribuida como es el caso de MongoDB facilitará la escalabilidad de la base de datos.
+
+\paragraph{}
+Por otro lado, a la hora de elegir el sistema de bases de datos para la aplicación Android, existe un abanico mucho más acotado de opciones. Existen alternativas no relacionales para Android como Couchbase o WaspDB, aunque en esta categoría sin duda destaca la solución tecnológica de Google, Firebase. Con este tipo de base de datos se cuenta con un poco de experiencia en proyectos previos, en donde se veía que no encajaría del todo para este proyecto puesto que está más enfocado en el streaming de datos así como en el uso de los servidores de Google para dicha gestión, lo que restringe la posibilidad de poder tener los datos en un servidor propio sobre el que se tenga el completo control.
+
+\paragraph{}
+Dadas estas circunstancias, se decidió usar SQLite como base de datos local para la aplicación Android, que es un estándar en el desarrollo de aplicaciones móviles. Como complemento, Android cuenta con un tipo de base de datos con formato clave-valor llamado \textit{sharepreferences}. Este tipo de base de datos es útil cuando las consultas y operaciones que se quiere realizar sobre los datos son sencillas. Así, \textbf{se ha decidido usar SQLite para almacenar información compleja} como las pautas y los episodios de ira \textbf{y \textit{sharepreferences} para información con menor nivel de complejidad}, como almacenar el último nivel de ira o los segundos que lleva un usuario desde su último episodio de ira.
 
 \section{Protocolos de comunicación}
 \label{sec:protoCom}
@@ -62,7 +80,7 @@ Los protocolos de comunicación que se van a analizar van a depender en cada cas
 
 \subsection{Comunicación entre el móvil Android y la pulsera}
 \paragraph{}
-La característica más importante que debe tener el protocolo utilizado es que debe ser de muy bajo consumo para maximizar la duración de la batería de la pulsera inteligente. A su vez, esta comunicación está limitada por los protocolos válidos entre los distintos modelos de móviles y de pulseras. Por este motivo, la única opción viable actualmente (2019) es utilizar el protocolo BLE, puesto que es compatible con la gran mayoría de dispositivos móviles inteligente así como de las pulseras inteligentes, lo que hace que la solución no quede anclada a ningún elemento físico. Este protocolo, como su propio nombre indica, es un protocolo de bajo consumo lo que reducirá el consumo eléctrico respecto a otros protocolos como Bluetooth 2.0.
+La característica más importante que debe tener el protocolo utilizado es que debe ser de muy bajo consumo para maximizar la duración de la batería de la pulsera inteligente. A su vez, esta comunicación está limitada por los protocolos válidos entre los distintos modelos de móviles y de pulseras. Por este motivo, \textbf{la opción que se ha escogido es utilizar el protocolo BLE}, puesto que es compatible con la gran mayoría de dispositivos móviles inteligente así como de las pulseras inteligentes, lo que hace que la solución no quede anclada a ningún elemento físico. Este protocolo, como su propio nombre indica, es un protocolo de bajo consumo lo que reducirá el consumo eléctrico respecto a otros protocolos como Bluetooth 2.0.
 
 \subsection{Comunicación entre el dispositivo móvil Android y el servidor}
 \label{subsec:comAndroidServ}
@@ -82,7 +100,7 @@ AMQP se diferencia principalmente de MQTT en que en AMQP el servidor puede manda
 En lo que respecta a la autenticación y la ciberseguridad, ambos protocolos pueden ser integrados con TLS. El ancho de banda de esta solución en MQTT únicamente se ve notablemente resentida en la etapa de autenticación, mientras que en las fases posteriores de envío de datos el rendimiento es muy similar a las soluciones sin TLS \citep{hivemq}.
 
 \paragraph{}
-En este trabajo se ha decidido usar el protocolo AMQP ya que en su implementación de RabbitMQ permite una fácil integración en múltiples lenguajes. Además usaremos el protocolo de seguridad TLS, que es un protocolo de baja latencia (lo que reduce el consumo de recursos de la app) y permite la comunicación bidireccional entre el servidor y el cliente, facilitando el intercambio de datos entre ambos. Como se ha comentado en esta sección, este protocolo de baja latencia tiene unas cabeceras más pequeñas en los paquetes de datos, lo que significa un menor consumo de datos, que es un requisito alineado con lo que se comentaba al principio de este apartado de intentar buscar una solución lo más eficiente posible en el consumo de datos, lo que a su vez implica un menor consumo de la batería del móvil.
+En este trabajo inicialmente se decidió usar el protocolo AMQP ya que en su implementación de RabbitMQ permite una fácil integración en múltiples lenguajes, pero tras realizar varias pruebas fue descartado ya que tanto MQTT como AMQP se basan en la utilización de unas colas de mensajes que pueden ser problemáticas en el caso de que el servidor estuviese caído o la petición fuese incorrecta, ya que se comprobó que esto hacía necesario el vaciamiento a mano de la cola de mensajes. Esto no ocurre con las peticiones Rest, que son procesos ácidos en los que en caso de que el servidor esté caído o que la URL o los datos sean incorrectos, o bien simplemente la petición no llegará a su destino y se volverá a enviar después o llegará a su destino y con detectores de errores bastante sencillos se evitará que la aplicación quede estancada por una petición incorrecta. Esto como digo se comprobó que con AMQP era bastante más complejo de gestionar, por lo que \textbf{se ha optado por utilizar API REST para la comunicación entre la aplicación Android y el servidor}, a pesar de que como se ha comentado, las peticiones HTTP suponen un mayor consumo de datos que las peticiones AMQP.
 
 \section{Ciberseguridad}
 \label{sec:ciber}
@@ -95,7 +113,7 @@ Como se va a tratar con datos biométricos sensibles, es importante asegurarse d
 \end{enumerate}
 
 \paragraph{}
-El punto más vulnerable de nuestra solución será el envío de datos de la pulsera al dispositivo Android, pues este envío viene configurado por el propio desarrollador de la pulsera y se realiza sin ningún tipo de cifrado, por lo que si un atacante se hace con el control del dispositivo Android, podrá leer directamente los datos que son enviados por BLE sin tener que forzar ni nuestra app ni nuestras bases de datos.
+El punto más vulnerable de la solución será el envío de datos de la pulsera al dispositivo Android, pues este envío viene configurado por el propio desarrollador de la pulsera y se realiza sin ningún tipo de cifrado, por lo que si un atacante se hace con el control del dispositivo Android, podrá leer directamente los datos que son enviados por BLE sin tener que forzar ni nuestra app ni nuestras bases de datos.
 
 \paragraph{}
 El servidor web debería requerir que los usuarios se autentiquen antes de poder operar con los datos de las mediciones para evitar accesos indeseados a la base de datos con los registros de sensorizaciones. A continuación se van a describir distintos métodos de autenticación que se pueden implementar.
@@ -112,11 +130,6 @@ El servidor web debería requerir que los usuarios se autentiquen antes de poder
 \item El consumidor cambia con el proveedor del servicio el token de solicitud obtenido en el paso 2 por un token de acceso.
 \item El consumidor accede al recurso protegido con su token.
 \end{enumerate}
-%TODO: add flow diagram and explain previous steps referencing the flow diagram (perhaps mix it with Twitter's example from Rob Sobers).
-%https://oauth.net/core/1.0/ Flow diagram OAuth1
-%https://tools.ietf.org/html/rfc6749 Flow diagram OAuth2
-%https://docs.spring.io/spring-social/docs/1.1.0.RELEASE/reference/htmlsingle/#section_oauth2ServiceProviders Flow diagram of both OAuth1 and OAuth2. <--- Use this
-%https://hueniverse.com/oauth-2-0-and-the-road-to-hell-8eec45921529 Limitations OAuth2
 
 \item OAuth 2.0: como su nombre indica, es la segunda versión del protocolo Oauth 1.0, que aumenta significativamente su usabilidad. Las principales diferencias de OAuth 2.0 frente a OAuth 1.0 son las siguientes \citep{oauth2}:
 \begin{itemize}
@@ -142,4 +155,4 @@ El servidor web debería requerir que los usuarios se autentiquen antes de poder
 \end{itemize}
 
 \paragraph{}
-Se ha decidido usar el protocolo de ciberseguridad TLS, ya que esta es la solución más extendida de todas las comentadas y tiene soporte e integración directa con AMQP, el protocolo de comunicación que se va a utilizar para conectar el móvil y la pulsera, tal y como se indicó en el apartado~\ref{subsec:comAndroidServ}.
+\textbf{Se ha decidido usar el protocolo de ciberseguridad TLS}, ya que esta es la solución más extendida de todas las comentadas y tiene soporte e integración directa con AMQP, el protocolo de comunicación que se va a utilizar para conectar el móvil y la pulsera, tal y como se indicó en el apartado~\ref{subsec:comAndroidServ}.
